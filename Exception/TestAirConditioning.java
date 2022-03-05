@@ -8,6 +8,5 @@ public class TestAirConditioning {
 		
 		air.inputAlterateTemperature();
 		
-		
 	}
 }
