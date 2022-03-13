@@ -24,14 +24,14 @@ public class Main {
 		boolean replay = false;	
 		do {
 
-			System.out.println("Digite o tamanho do tabuleiro (formato numÈrico maior ou igual a 3)");
+			System.out.println("Digite o tamanho do tabuleiro (formato num√©rico maior ou igual a 3)");
 			int dimension = input.nextInt();
 
 			JogoDaVelha game = new JogoDaVelha(dimension, player); // criar tabuleiro
 
 			// iniciar jogadas
-			int turnCount = 0; // contador para ser usado na conta se È a vez do player 1
-			boolean turnPlayer1 = true; // lÛgica boolean para ser usado na conta se È a vez do player 1
+			int turnCount = 0; // contador para ser usado na conta se √© a vez do player 1
+			boolean turnPlayer1 = true; // l√≥gica boolean para ser usado na conta se √© a vez do player 1
 
 			while (game.verifyHorizontal() == false && game.verifyVertical() == false && game.verifyDiagonal() == false) {
 
@@ -40,44 +40,44 @@ public class Main {
 
 					game.printBoard();
 					System.out.println("Jogador " + player.getPlayer1()
-							+ ", digite a linha em que vocÍ gostaria de colocar a peÁa. MÌnimo 1, m·ximo "
+							+ ", digite a linha em que voc√™ gostaria de colocar a pe√ßa. M√≠nimo 1, m√°ximo "
 							+ (dimension));
 					int linePlayer1 = input.nextInt();
 					System.out.println("Jogador " + player.getPlayer1()
-							+ ", digite a coluna em que vocÍ gostaria de colocar a peÁa. MÌnimo 1, m·ximo "
+							+ ", digite a coluna em que voc√™ gostaria de colocar a pe√ßa. M√≠nimo 1, m√°ximo "
 							+ (dimension));
 					int columnPlayer1 = input.nextInt();
 					turnCount += 1;
 
-					// tratar dado: caso o usu·rio digite 0, colocar 1 por causa do array
+					// tratar dado: caso o usu√°rio digite 0, colocar 1 por causa do array
 					if (linePlayer1 == 0)
 						linePlayer1 = 1;
 					if (columnPlayer1 == 0)
 						columnPlayer1 = 1;
 
-					boolean result = game.play(linePlayer1 - 1, columnPlayer1 - 1, 'x'); // tratar dado: diminui 1 porque o array comeÁa em zero
+					game.play(linePlayer1 - 1, columnPlayer1 - 1, 'x'); // tratar dado: diminui 1 porque o array come√ßa em zero
 																							
 
 				} else {
 					game.printBoard();
 
 					System.out.println("Jogador " + player.getPlayer2()
-							+ ", digite a linha em que vocÍ gostaria de colocar a peÁa. MÌnimo 1, m·ximo "
+							+ ", digite a linha em que voc√™ gostaria de colocar a pe√ßa. M√≠nimo 1, m√°ximo "
 							+ (dimension));
 					int linePlayer2 = input.nextInt();
 					System.out.println("Jogador " + player.getPlayer2()
-							+ ", digite a coluna em que vocÍ gostaria de colocar a peÁa. MÌnimo 1, m·ximo "
+							+ ", digite a coluna em que voc√™ gostaria de colocar a pe√ßa. M√≠nimo 1, m√°ximo "
 							+ (dimension));
 					int columnPlayer2 = input.nextInt();
 					turnCount += 1;
 
-					// tratar dado: caso o usu·rio digite 0, colocar 1 por causa do array
+					// tratar dado: caso o usu√°rio digite 0, colocar 1 por causa do array
 					if (linePlayer2 == 0)
 						linePlayer2 = 1;
 					if (columnPlayer2 == 0)
 						columnPlayer2 = 1;
 
-					boolean result = game.play(linePlayer2 - 1, columnPlayer2 - 1, 'o'); // formatar para comeÁar de 1 e n„o zero
+					game.play(linePlayer2 - 1, columnPlayer2 - 1, 'o'); // formatar para come√ßar de 1 e n√£o zero
 				}
 			}
 			game.printBoard();
@@ -89,9 +89,9 @@ public class Main {
 
 			if (answer.equalsIgnoreCase("sim")) {
 				replay = true;
-			} else if (answer.matches("(?i)(n„o|nao)")) {
+			} else if (answer.matches("(?i)(n√£o|nao)")) {
 				replay = false;
-				System.out.println(player.toString()); // Informar os dados do vencedor se n„o quiser mais jogar.
+				System.out.println(player.toString()); // Informar os dados do vencedor se n√£o quiser mais jogar.
 				System.out.println("Jogo encerrado.");
 			}
 		} while (replay == true);
@@ -99,6 +99,3 @@ public class Main {
 		input.close();
 	}	
 }
-		
-		
-
