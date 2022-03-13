@@ -37,9 +37,9 @@ public class Player {
 		this.pointsPlayer2 = pointsPlayer2;
 	}
 	
-	
+	@Override
 	public String toString() {
-		return "O jogador " + namePlayer1 + " tem pontuação " + pointsPlayer1 + "." 
-		   + "\nO jogador " + namePlayer2 + " tem pontuação " + pointsPlayer2 + "."; 
+		return "O jogador " + namePlayer1 + " tem pontuaÃ§Ã£o " + pointsPlayer1 + "." 
+		   + "\nO jogador " + namePlayer2 + " tem pontuaÃ§Ã£o " + pointsPlayer2 + "."; 
 	}
 }
