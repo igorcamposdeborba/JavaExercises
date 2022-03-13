@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class JogoDaVelha {
 	int dimension;
 	char [][] board; // array bidimensional para montar o tabuleiro
-	boolean registerBoardCreated = false; // serve na validação para mostrar na tela se é a primeira vez que o tabuleiro está sendo criado.
-	Player player; // composição porque um jogador faz compõe do jogo
+	boolean registerBoardCreated = false; // serve na validaÃ§Ã£o para mostrar na tela se Ã© a primeira vez que o tabuleiro estÃ¡ sendo criado.
+	Player player; // composiÃ§Ã£o porque um jogador faz compÃµe do jogo
 	
-	char x = 'x'; // peças para poder atribuir a cada jogador (1 = x e 2 = o)
+	char x = 'x'; // peÃ§as para poder atribuir a cada jogador (1 = x e 2 = o)
 	char circle = 'o'; 
 	
 	boolean player1Win = false;
@@ -35,12 +35,12 @@ public class JogoDaVelha {
 						board[line][column] = piece;
 						return true;
 					}
-				} else { // ! BUG: NÃO TÁ FUNCIONANDO
-					// enquanto ele digitar errado, peça para digitar certo
+				} else { // ! BUG: NÃƒO TÃ FUNCIONANDO
+					// enquanto ele digitar errado, peÃ§a para digitar certo
 					int temporaryLine = 0;
 					int temporaryColumn = 0;
 					while (board[line][column] == 'x' || board[line][column] == 'o') {
-						System.err.println("Erro: espaço já preenchido anteriormente. Digite novamente a linha"); // mostrar mensagem de erro
+						System.err.println("Erro: espaÃ§o jÃ¡ preenchido anteriormente. Digite novamente a linha"); // mostrar mensagem de erro
 						temporaryLine = input.nextInt() -1; // ! talvez corrigir com -1
 						System.out.println("Digite novamente a linha");
 						temporaryColumn = input.nextInt() -1;
@@ -55,17 +55,17 @@ public class JogoDaVelha {
 						return true;
 					}
 				}
-				// exception se digitou um tamanho maior que o espaço do array
+				// exception se digitou um tamanho maior que o espaÃ§o do array
 			} catch (ArrayIndexOutOfBoundsException e) {
-				System.err.println("Erro: você digitou uma linha ou coluna maior que o espaço do tabuleiro. Digite um número até " + board.length);
+				System.err.println("Erro: vocÃª digitou uma linha ou coluna maior que o espaÃ§o do tabuleiro. Digite um nÃºmero atÃ© " + board.length);
 				int temporaryLine = input.nextInt() -1;
-				System.out.println("Digite a coluna em que você gostaria de colocar a peça. Mínimo 1, máximo " + board.length);
+				System.out.println("Digite a coluna em que vocÃª gostaria de colocar a peÃ§a. MÃ­nimo 1, mÃ¡ximo " + board.length);
 				int temporaryColumn = input.nextInt() -1;
 				
 				while (temporaryLine > board.length || temporaryColumn > board.length) {
-					System.err.println("Erro: você digitou uma linha ou coluna maior que o espaço do tabuleiro. Digite um número até " + board.length);
+					System.err.println("Erro: vocÃª digitou uma linha ou coluna maior que o espaÃ§o do tabuleiro. Digite primeiro a linha, depois a coluna com nÃºmeros atÃ© " + board.length);
 					temporaryLine = input.nextInt() -1;
-					System.out.println("Digite a coluna em que você gostaria de colocar a peça. Mínimo 1, máximo " + board.length);
+					System.out.println("Digite a coluna em que vocÃª gostaria de colocar a peÃ§a. MÃ­nimo 1, mÃ¡ximo " + board.length);
 					temporaryColumn = input.nextInt() -1;
 					
 				}
@@ -91,49 +91,47 @@ public class JogoDaVelha {
 	}
 		
 	public void printBoard() {
-		// Mostrar orientações na primeira jogada, antes de criar o tabuleiro
+		// Mostrar orientaÃ§Ãµes na primeira jogada, antes de criar o tabuleiro
 		if (registerBoardCreated == false) {
 			for (int i=0; i < board.length; i++) {
-				char[] height = board[i];
 				for (int j=0; j < board[i].length; j++) {
-					if (i == 0 && j == 0) System.out.println("Os números são as linhas e colunas que você deve digitar quando solicitado:");
+					if (i == 0 && j == 0) System.out.println("Os nÃºmeros abaixo representam as linhas e colunas que vocÃª deve digitar quando solicitado:");
 					System.out.print((i+1) + "," + (j+1) + "|");
 				}
 				System.out.println(); // quebrar a linha
-				this.registerBoardCreated = true; // registrar que o tabuleiro foi criado para não cair nesse if e cair no else para não mostrar os números no tabuleiro
+				this.registerBoardCreated = true; // registrar que o tabuleiro foi criado para nÃ£o cair nesse if e cair no else para nÃ£o mostrar os nÃºmeros no tabuleiro
 			}
 		} else {
 			for (int i=0; i < board.length; i++) {
-				char[] height = board[i];
 				for (int j=0; j < board[i].length; j++) {
-					if (i == 0 && j == 0) System.out.println("Os números são as linhas e colunas que você deve digitar quando solicitado:");
-					System.out.print(board[i][j] + "|"); // imprimir os itens dentro do array (peças x ou o)
+					if (i == 0 && j == 0) System.out.println("Os nÃºmeros sÃ£o as linhas e colunas que vocÃª deve digitar quando solicitado:");
+					System.out.print(board[i][j] + "|"); // imprimir os itens dentro do array (peÃ§as x ou o)
 				}
 				System.out.println(); // quebrar a linha
 			}
 		}
 	}
-	// verificar tabuleiro (lógica junta em uma parte dentro do método: contar junto validar)
-	// verificar de forma dinâmica (tabuleiro sem limite de tamanho)
+	// verificar tabuleiro (lÃ³gica junta em uma parte dentro do mÃ©todo: contar junto validar)
+	// verificar de forma dinÃ¢mica (tabuleiro sem limite de tamanho)
 	public boolean verifyHorizontal() {		
 		// System.out.println(Arrays.deepToString(board));  // testar visualmente se array ta preenchido
 
 		
-		int countX1 = 0; // contador para comparar se o número de peças preenchidas com x é igual ao tamanho do array da linha
+		int countX1 = 0; // contador para comparar se o nÃºmero de peÃ§as preenchidas com x Ã© igual ao tamanho do array da linha
 		int countO1 = 0;
 			
 		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length; j++) { // pergue o número do meio e no if compare com os dos do lado
+			for (int j = 0; j < board[i].length; j++) { // pergue o nÃºmero do meio e no if compare com os dos do lado
 				
 				
 				// verificar horizontal
-				if (board[i][board.length - 1] == board[i][j] // pega última linha
-					&& board[i][j] == 'x') { // pega a linha atual para ver se é a peça x
-						countX1++;	 // contar o número de x daquela linha
-						if (countX1 == board.length) { // validar se x é igual ao tamanho da linha
+				if (board[i][board.length - 1] == board[i][j] // pega Ãºltima linha
+					&& board[i][j] == 'x') { // pega a linha atual para ver se Ã© a peÃ§a x
+						countX1++;	 // contar o nÃºmero de x daquela linha
+						if (countX1 == board.length) { // validar se x Ã© igual ao tamanho da linha
 							player1Win = true;
 							player.setPointsPlayer1(player.getPointsPlayer1() + 1);
-							System.out.println("O jogador 1 " + player.getPlayer1() + " venceu");
+							System.out.println("O jogador 1 " + player.getPlayer1() + " venceu porque preencheu a horizontal");
 							System.out.println(player.toString());
 							return true;
 						}
@@ -146,7 +144,7 @@ public class JogoDaVelha {
 							if (countO1 == board.length) { // testar se o tamanho 
 								player2Win = true;
 								player.setPointsPlayer2(player.getPointsPlayer2() + 1);
-								System.out.println("O jogador 2 " + player.getPlayer2() + " venceu");
+								System.out.println("O jogador 2 " + player.getPlayer2() + " venceu porque preencheu a horizontal");
 								System.out.println(player.toString());
 								return true;
 							}
@@ -160,11 +158,11 @@ public class JogoDaVelha {
 		return false;
 	}
 	
-	// validar verticais (lógica separada em duas partes dentro do método: contar e depois validar)
+	// validar verticais (lÃ³gica separada em duas partes dentro do mÃ©todo: contar e depois validar)
 	public boolean verifyVertical() {		
 		// System.out.println(Arrays.deepToString(board));
 		
-		int countX1 = 0; // contador para comparar se o número de peças preenchidas com x é igual ao tamanho do array da linha
+		int countX1 = 0; // contador para comparar se o nÃºmero de peÃ§as preenchidas com x Ã© igual ao tamanho do array da linha
 		int countO1 = 0;
 			
 			
@@ -172,8 +170,8 @@ public class JogoDaVelha {
 			for (int j = 0; j < board[i].length; j++) {
 				
 				// verificar vertical
-				if (board[dimension - 1][j] == board[i][j] // pegar a última linha e comparar com a atual
-					&& board[i][j] == 'x') { // pega a linha atual para comparar se é a peça x
+				if (board[dimension - 1][j] == board[i][j] // pegar a Ãºltima linha e comparar com a atual
+					&& board[i][j] == 'x') { // pega a linha atual para comparar se Ã© a peÃ§a x
 						countX1++;
 						
 				} else if (board[dimension - 1][j] == board[i][j]
@@ -182,36 +180,40 @@ public class JogoDaVelha {
 							
 				}
 			}
+			// comparar se o array da linha j estÃ¡ preenchido com todas as peÃ§as iguais
+			if (countX1 == board.length) { 
+				if (player1Win == false)
+					player1Win = true;
+					player.setPointsPlayer1(player.getPointsPlayer1() + 1);
+					System.out.println("O jogador 1 " + player.getPlayer1() + " venceu porque preencheu a vertical");
+					System.out.println(player.toString());
+					return true;
+			} else if (countO1 == board.length) {
+				if (player2Win == false)
+					player2Win = true;
+					player.setPointsPlayer2(player.getPointsPlayer2() + 1);
+					System.out.println("O jogador 2 " + player.getPlayer2() + " venceu porque preencheu a vertical");
+					System.out.println(player.toString());
+					return true;
+			}
+			
+			countX1 = 0; // zerar contador ao trocar de linha i no array
+			countO1 = 0;
 		}
-		// comparar se o array da linha j está preenchido com todas as peças iguais
-		if (countX1 == board.length) { 
-			if (player1Win == false)
-				player1Win = true;
-				player.setPointsPlayer1(player.getPointsPlayer1() + 1);
-				System.out.println("O jogador 1 " + player.getPlayer1() + " venceu");
-				System.out.println(player.toString());
-				return true;
-		} else if (countO1 == board.length) {
-			if (player2Win == false)
-				player2Win = true;
-				player.setPointsPlayer2(player.getPointsPlayer2() + 1);
-				System.out.println("O jogador 2 " + player.getPlayer2() + " venceu");
-				System.out.println(player.toString());
-				return true;
-		}
+		
 		
 		return false;
 	}
 	
-	// Validar diagonais (lógica separada em duas partes dentro do método: contar e depois validar)
+	// Validar diagonais (lÃ³gica separada em duas partes dentro do mÃ©todo: contar e depois validar)
 	public boolean verifyDiagonal() {
-			int countX1 = 0; // Para salvar o x a fim de utilizar na comparação se o tamanho máximo da linha foi preenchida com a mesma peça
+			int countX1 = 0; // Para salvar o x a fim de utilizar na comparaÃ§Ã£o se o tamanho mÃ¡ximo da linha foi preenchida com a mesma peÃ§a
 			int countO1 = 0;
 			
 			// validar diagonal esquerda para  direita
 			for (int i = 0; i < board.length; i++) {
 				for (int j = 0; j < board.length; j++) {
-					if (i == j) {	// identificar diagonal, que são valores iguais porque a matrix é quadrada
+					if (i == j) {	// identificar diagonal, que sÃ£o valores iguais porque a matrix Ã© quadrada
 						if (board[i][j] == 'x') {
 							countX1++;
 						} else if (board[i][j] == 'o') {
@@ -225,26 +227,26 @@ public class JogoDaVelha {
 			int countO2 = 0;			
 			for (int i = 0; i < board.length; i++) {
 				for (int j = 0; j < board.length; j++) {
-					if (i == (board.length - j - 1) && board[i][j] == 'x') { // inverte diagonal. Começa do tamanho do array, e vai diminuindo cada posição
-						countX2++;											 // e diminui 1 para o que array começa em zero
+					if (i == (board.length - j - 1) && board[i][j] == 'x') { // inverte diagonal. ComeÃ§a do tamanho do array, e vai diminuindo cada posiÃ§Ã£o
+						countX2++;											 // e diminui 1 para o que array comeÃ§a em zero
 					} else if (i == (board.length - j - 1) && board[i][j] == 'x') {
 						countO2++;
 					}
 				}
 			}
-			// validar diagonais: disparar resultado se o valor salvo da diagonal é igual ao tamanho do array quadrado (se o array fosse retangular, a lógica mudaria)
+			// validar diagonais: disparar resultado se o valor salvo da diagonal Ã© igual ao tamanho do array quadrado (se o array fosse retangular, a lÃ³gica mudaria)
 			if (countX1 == board.length || countX2 == board.length) { 
 				if (player1Win == false)
 					player1Win = true;
 					player.setPointsPlayer1(player.getPointsPlayer1() + 1);
-					System.out.println("O jogador 1 " + player.getPlayer1() + " venceu");
+					System.out.println("O jogador 1 " + player.getPlayer1() + " venceu porque preencheu a diagonal");
 					System.out.println(player.toString());
 					return true;
 			} else if (countO1 == board.length || countO2 == board.length) {
 				if (player2Win == false)
 					player2Win = true;
 					player.setPointsPlayer2(player.getPointsPlayer2() + 1);
-					System.out.println("O jogador 2 " + player.getPlayer2() + " venceu");
+					System.out.println("O jogador 2 " + player.getPlayer2() + " venceu porque preencheu a diagonal");
 					System.out.println(player.toString());
 					return true;
 			}
