@@ -33,7 +33,8 @@ public class Main {
 			int turnCount = 0; // contador para ser usado na conta se é a vez do player 1
 			boolean turnPlayer1 = true; // lógica boolean para ser usado na conta se é a vez do player 1
 
-			while (game.verifyHorizontal() == false && game.verifyVertical() == false && game.verifyDiagonal() == false) {
+			// testar quem venceu e chamar o método de verificar a cada passada do while:
+			while (game.verifyHorizontal() == false && game.verifyVertical() == false && game.verifyDiagonal() == false && game.verifyNoWinner() == false) {
 
 				turnPlayer1 = (turnCount % 2 == 0); // turno do jogador par (player 1)
 				if (turnPlayer1 == true) {
@@ -56,7 +57,7 @@ public class Main {
 						columnPlayer1 = 1;
 
 					game.play(linePlayer1 - 1, columnPlayer1 - 1, 'x'); // tratar dado: diminui 1 porque o array começa em zero
-																							
+					
 
 				} else {
 					game.printBoard();
