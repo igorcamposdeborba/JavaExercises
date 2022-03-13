@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class JogoDaVelha {
-	int dimension;
+	int dimension; // salvar o tamanho do tabuleiro para ficar mais fácil para digitar e ler o código
 	char [][] board; // array bidimensional para montar o tabuleiro
 	boolean registerBoardCreated = false; // serve na validação para mostrar na tela se é a primeira vez que o tabuleiro está sendo criado.
 	Player player; // composição porque um jogador faz compõe do jogo
@@ -35,7 +35,7 @@ public class JogoDaVelha {
 						board[line][column] = piece;
 						return true;
 					}
-				} else { // ! BUG: NÃO TÁ FUNCIONANDO
+				} else {
 					// enquanto ele digitar errado, peça para digitar certo
 					int temporaryLine = 0;
 					int temporaryColumn = 0;
@@ -92,11 +92,13 @@ public class JogoDaVelha {
 		
 	public void printBoard() {
 		// Mostrar orientações na primeira jogada, antes de criar o tabuleiro
-		if (registerBoardCreated == false) {
+		if (registerBoardCreated == false) { // verificar se é a primeira vez que é criado o tabuleiro
 			for (int i=0; i < board.length; i++) {
 				for (int j=0; j < board[i].length; j++) {
-					if (i == 0 && j == 0) System.out.println("Os números abaixo representam as linhas e colunas que você deve digitar quando solicitado:");
-					System.out.print((i+1) + "," + (j+1) + "|");
+					if (i == 0 && j == 0) {
+						System.out.println("Os números abaixo representam as linhas e colunas que você deve digitar quando solicitado:");
+					}
+					System.out.print((i+1) + "," + (j+1) + "|"); // Na introdução: imprimir a orientação com os números onde cada item fica dentro do array
 				}
 				System.out.println(); // quebrar a linha
 				this.registerBoardCreated = true; // registrar que o tabuleiro foi criado para não cair nesse if e cair no else para não mostrar os números no tabuleiro
@@ -104,7 +106,9 @@ public class JogoDaVelha {
 		} else {
 			for (int i=0; i < board.length; i++) {
 				for (int j=0; j < board[i].length; j++) {
-					if (i == 0 && j == 0) System.out.println("Os números são as linhas e colunas que você deve digitar quando solicitado:");
+					if (i == 0 && j == 0) { 
+						System.out.println("Os números abaixo representam as linhas e colunas que você deve digitar quando solicitado:");
+					}
 					System.out.print(board[i][j] + "|"); // imprimir os itens dentro do array (peças x ou o)
 				}
 				System.out.println(); // quebrar a linha
@@ -255,4 +259,23 @@ public class JogoDaVelha {
 			return false;
 		}
 	
+	public boolean verifyNoWinner() {
+		int countPieces = 0;
+		if (registerBoardCreated == true) { // verificar se o tabuleiro foi criado
+			for (int i = 0; i < board.length; i++) {
+				for (int j = 0; j < board[i].length; j++) {
+					if (board[i][j] == 'x' || board[i][j] == 'o') { // verificar se na posição do array ta preenchido
+						countPieces++; // contar aquela peça
+					}
+				}
+			}
+		// validar se todos os espaços estão preenchidos
+		if (countPieces == board.length) {
+			System.out.println("Ninguém venceu.");
+			System.out.println(player.toString());
+			}
+		}
+		
+		return false;
+	}
 }
