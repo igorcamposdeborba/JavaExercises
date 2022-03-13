@@ -2,8 +2,6 @@ package model;
 
 import java.util.Scanner;
 
-
-
 public class JogoDaVelha {
 	int dimension; // salvar o tamanho do tabuleiro para ficar mais fácil para digitar e ler o código
 	char [][] board; // array bidimensional para montar o tabuleiro
@@ -101,7 +99,7 @@ public class JogoDaVelha {
 			for (int i=0; i < board.length; i++) {
 				for (int j=0; j < board[i].length; j++) {
 					if (i == 0 && j == 0) {
-						System.out.println("Os números abaixo representam as linhas e colunas que você deve digitar quando solicitado:");
+						System.out.println("Os números abaixo representam as linhas e colunas que você deve digitar. Quando solicitado digite números inteiros:");
 					}
 					System.out.print((i+1) + "," + (j+1) + "|"); // Na introdução: imprimir a orientação com os números onde cada item fica dentro do array
 				}
@@ -111,9 +109,6 @@ public class JogoDaVelha {
 		} else {
 			for (int i=0; i < board.length; i++) {
 				for (int j=0; j < board[i].length; j++) {
-					if (i == 0 && j == 0) { 
-						System.out.println("Os números abaixo representam as linhas e colunas que você deve digitar quando solicitado:");
-					}
 					System.out.print(board[i][j] + "|"); // imprimir os itens dentro do array (peças x ou o)
 				}
 				System.out.println(); // quebrar a linha
@@ -257,14 +252,6 @@ public class JogoDaVelha {
 
 			return false;
 		}
-	
-	/*
-	public boolean stopLoopIfTie() {
-		if (verifyTie() == true) {
-			return true;
-		}
-		return false;
-	}*/
 	
 	// verificar empate
 	public boolean verifyTie() {
