@@ -106,6 +106,7 @@ public class Main {
 			}
 		} while (replay == true);
 
-		input.close();
+		input.close(); // desalocar espaço do input na memória ram
+		System.exit(0);// encerrar JVM
 	}	
 }
