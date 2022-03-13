@@ -27,7 +27,7 @@ public class JogoDaVelha {
 		// fazer jogada
 		public boolean play(int line, int column, char piece) {
 			try {
-				if (board[line][column] != 'x' && board[line][column] != 'o'){
+				if (board[line][column] != 'x' && board[line][column] != 'o'){ // coloque a peça se não tiver peça naquele espaço que o usuário digitou
 					if (piece == 'x') {
 						board[line][column] = piece;
 						return true;
@@ -36,7 +36,7 @@ public class JogoDaVelha {
 						return true;
 					}
 				} else {
-					// enquanto ele digitar errado, peça para digitar certo
+					// enquanto ele digitar errado se o espaço estiver preenchido, peça para digitar certo
 					int temporaryLine = 0;
 					int temporaryColumn = 0;
 					while (board[line][column] == 'x' || board[line][column] == 'o') {
