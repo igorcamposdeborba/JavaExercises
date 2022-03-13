@@ -26,6 +26,8 @@ public class Main {
 
 			System.out.println("Digite o tamanho do tabuleiro (formato numérico maior ou igual a 3)");
 			int dimension = input.nextInt();
+			
+			
 
 			JogoDaVelha game = new JogoDaVelha(dimension, player); // criar tabuleiro
 
@@ -33,8 +35,8 @@ public class Main {
 			int turnCount = 0; // contador para ser usado na conta se é a vez do player 1
 			boolean turnPlayer1 = true; // lógica boolean para ser usado na conta se é a vez do player 1
 
-			// testar quem venceu e chamar o método de verificar a cada passada do while:
-			while (game.verifyHorizontal() == false && game.verifyVertical() == false && game.verifyDiagonal() == false && game.verifyNoWinner() == false) {
+			// testar quem venceu e chamar o método de verificar a cada passada do while, e verificar se tem empate:
+			while (game.verifyHorizontal() == false && game.verifyVertical() == false && game.verifyDiagonal() == false) {
 
 				turnPlayer1 = (turnCount % 2 == 0); // turno do jogador par (player 1)
 				if (turnPlayer1 == true) {
@@ -56,9 +58,9 @@ public class Main {
 					if (columnPlayer1 == 0)
 						columnPlayer1 = 1;
 
+					// fazer jogada
 					game.play(linePlayer1 - 1, columnPlayer1 - 1, 'x'); // tratar dado: diminui 1 porque o array começa em zero
 					
-
 				} else {
 					game.printBoard();
 
@@ -78,11 +80,18 @@ public class Main {
 					if (columnPlayer2 == 0)
 						columnPlayer2 = 1;
 
+					// fazer jogada
 					game.play(linePlayer2 - 1, columnPlayer2 - 1, 'o'); // formatar para começar de 1 e não zero
+					
+				}
+			// mostrar a verificação do empate em tela
+				if (game.verifyTie() == true) {
+					System.out.println("Empate");
+					player.toString();
+					break; // parar laço while porque empatou
 				}
 			}
 			game.printBoard();
-			
 			
 			System.out.println("Jogar novamente?");
 			String answer = input.nextLine();
