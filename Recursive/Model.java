@@ -72,6 +72,7 @@ public class Model {
 		return res;
 	}
 	
+	// verificar palíndromo
 	public boolean exercicio8(char [] word) throws IllegalArgumentException {
 		if (word == null) {
 			throw new IllegalArgumentException();
@@ -212,5 +213,77 @@ public class Model {
 		return invertString (originalString, i+1, inverted);
 	}
 	
+	// calcula 1 + 1/2 + 1/3 + 1/4 + 1/5 + ... + 1/N
+	public double exercicio17 (int number) throws IllegalArgumentException {
+		if (number <= 0)
+			throw new IllegalArgumentException();
+		return sumDivisible(number, 1);
+	}
+	
+	private double sumDivisible(int number, double i) {
+		if(i >= number) 
+			return 1/i;
+		double d = number;
+		return 1/i + sumDivisible(number, i+1);
+	}
+	
+	// verificar palíndromo
+	public boolean exercicio18(String text) throws IllegalArgumentException {
+		if (text == null)
+			throw new IllegalArgumentException();
+		text = text.replaceAll("[\\\\,.?!@(){}\\[\\] \\/]", "").toLowerCase();
+		return palindrome(text, 0);
+	}
+	
+	private boolean palindrome(String text, int i) {
+		if (i >= text.length() / 2)
+			return true;
+		if (text.charAt(i) == text.charAt(text.length() -1 - i)) {
+			return palindrome(text, i + 1);
+		}
+		return false;
+	}
+	
+	// mostrar número de posições com palíndromo no array
+	public int exercicio19 (String[] text) throws IllegalArgumentException{
+		if (text == null)
+			throw new IllegalArgumentException();
+		return exercicio19(text, 0);
+	}
+	private int exercicio19(String[] text, int i) {
+		if (i >= text.length)
+			return 0;
+		if (exercicio18(text[i])) {
+			return 1 + exercicio19(text, i+1);
+		}
+		return exercicio19(text, i+1);
+	}
+	
+	// fazer média
+	public double exercicio20 (int number) throws IllegalArgumentException {
+		if (number <= 0)
+			throw new IllegalArgumentException();
+		return average(number, 0, 0);
+	}
+	
+	private double average(int number, double sum, int quantDigits){
+		if(number == 0) return sum / quantDigits;
+		return average (number / 10, sum + (number % 10), quantDigits + 1);
+	}
+	
+	// calcular número perfeito (ex: 1+2+3 = 6)
+	public boolean exercicio21(int number) throws IllegalArgumentException {
+		if (number <= 0)
+			throw new IllegalArgumentException();
+		return perfectNumber(number, 0, 1);
+	}
+	
+	public boolean perfectNumber(int number, int sum, int i) {
+		if (i == number) 
+			return sum == number;
+		if (number % i == 0) {
+			return perfectNumber(number, sum + i, i +1);
+		}
+		return perfectNumber(number, sum, i +1);
+	}
 }
-
