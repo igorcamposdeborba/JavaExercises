@@ -1,0 +1,22 @@
+Tipo,Descricao,Preco,Produto,Informacao extra
+Alimento,Cafe descafeinado,2.00,Cafe,42348
+Alimento,Integral,5.53,Bolacha,40270
+Vestuario,Manga curta,17.90,Camiseta,10
+Eletrodomestico,4 bocas,890.00,Fogao,125.00
+Eletrodomestico,Preto 110/220V,490.98,Microondas,75
+Alimento,Parboilizado,4.90,Arroz,50394
+Alimento,100% gordura,2.65,Margarina,38457
+Alimento,Light,4.37,Requeijao,35824
+Alimento,Otima para bolos,2.56,Maizena,42939
+Alimento,Tipo 2,6.89,Farinha,43733
+Alimento,Sabor Queijo,19.90,Fondue,39898
+Alimento,Zero Lactose,3.85,Leite,36818
+Vestuario,Jeans,69.90,Calca,5
+Vestuario,100% algodao,29.90,Bermuda,16
+Vestuario,Canguru,78.64,Casaco,8
+Vestuario,100% algodao,27.50,Moleton,36
+Vestuario,Microfibra,70.30,Gravata,78
+Vestuario,Manga longa,45.60,Camiseta,4
+Eletrodomestico,A gas,758.00,Forno,127.90
+Eletrodomestico,220V,360.10,Torradeira,154.65
+Eletrodomestico,Nespresso,399.90,Cafeteira,98.65
