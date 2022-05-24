@@ -96,4 +96,15 @@ public class StaticQueue<E> implements Queue<E> {
 			}
 		}
 	}
+	
+	// Implemente o método contains, definido abaixo, que informa se a fila contém determinado elemento.
+	public boolean contains (E element) {
+		while (!isEmpty()) {
+			if (front() == element) { // comparar se o valor atual é igual ao element buscado
+				return true;
+			}
+			dequeue(); // retirar o elemento da lista. Isso é para comparar no if acima
+		}
+		return false; // não encontrado o element
+	}
 }
