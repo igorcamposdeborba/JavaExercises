@@ -78,4 +78,22 @@ public class StaticQueue<E> implements Queue<E> {
 		}
 	}
 	
+	// Implemente, em uma classe qualquer, um método que remove todas as ocorrências 
+	// de um determinado elemento em uma fila de caracteres. Considere a assinatura a seguir:
+	public void exterminateFromQueue(Queue<Character> q, char element) {
+		// salvar uma fila auxiliar para guardar só os elementos que não têm o elemento que quero que não esteja na fila
+		StaticQueue<Character> queueAuxiliar = new StaticQueue<Character>(q.numElements());
+		
+		char value;
+		while (!q.isEmpty()) {
+			value = q.dequeue(); // retirar o valor da posição atual. E descartar o valor se for igual ao element porque não faço nada com ele
+			if (value != element) { // testar se a posição atual é diferente do elemento que busco
+				queueAuxiliar.enqueue(value);
+			}
+			
+			while (!queueAuxiliar.isEmpty()) {
+				q.enqueue(queueAuxiliar.dequeue()); // colocar só os valores que não têm o elemento que quero retirar
+			}
+		}
+	}
 }
