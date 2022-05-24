@@ -107,4 +107,16 @@ public class StaticQueue<E> implements Queue<E> {
 		}
 		return false; // não encontrado o element
 	}
+	
+	// Implemente um método que inverte a ordem dos elementos da fila.
+	public void flip() {
+		E arrayAuxiliar[] = (E[]) new Object[numElements()]; // array auxiliar para guardar valores para depois adicionar na fila na ordem inversa
+		for (int i=0; i < arrayAuxiliar.length; i++) {
+			arrayAuxiliar[i] = dequeue(); // retirar cada elemento e guardar no arrayAuxiliar
+		}
+		
+		for (int i=arrayAuxiliar.length -1; i >= 0; i--) { // inverter a ordem do loop do array
+			enqueue(arrayAuxiliar[i]); // adicionar cada elemento na ordem inversa
+		}
+	}
 }
