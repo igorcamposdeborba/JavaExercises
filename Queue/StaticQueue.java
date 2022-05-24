@@ -119,4 +119,19 @@ public class StaticQueue<E> implements Queue<E> {
 			enqueue(arrayAuxiliar[i]); // adicionar cada elemento na ordem inversa
 		}
 	}
+	
+	// 6) Implemente uma sobrecarga do método enqueue que recebe como parâmetro uma fila, 
+	// em vez de um elemento. Esse método deve adicionar ao final da fila corrente os elementos 
+	// da fila passada como parâmetro, mantendo a ordem original. 
+	public void concatenateQueue (Queue<E> original, E ... variableArgs) {
+		StaticQueue<E> queueAuxiliar = new StaticQueue<E>(original.numElements() + variableArgs.length);
+		
+		E value;
+		while (!original.isEmpty()) {
+			queueAuxiliar.enqueue(original.dequeue()); // colocar pilha original na temporária deixando a original vazia
+		}
+		for (int i=0; i < variableArgs.length; i++) {
+			queueAuxiliar.enqueue((E) variableArgs);
+		}
+	}
 }
