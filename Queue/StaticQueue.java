@@ -273,4 +273,30 @@ public class StaticQueue<E> implements Queue<E> {
 		
 		return queueAuxiliar2; // retornar apenas o final da fila depois do element do parâmetro
 	}
+	
+		// 11) Implemente um método que percorra a fila e mova para o final todas as ocorrências de um determinado elemento
+	public void moveToBackAllOccurrencesOf(E element) {
+		// salvar filas auxiliares para passsar os elementos para elas
+		StaticQueue<E> queueAuxiliar1 = new StaticQueue<E>(this.numElements());
+		StaticQueue<E> queueAuxiliar2 = new StaticQueue<E>(this.numElements()); 
+		
+		E elementAuxiliar = (E) new Object(); // salvar o elemento atual num objeto
+		
+		while(!this.isEmpty()) {
+			elementAuxiliar = this.dequeue();
+			
+			if (elementAuxiliar.equals(element)) {
+				queueAuxiliar2.enqueue(elementAuxiliar); // salvar na segunda fila os elementos iguais identificados pelo parâmetro
+			} else {
+				queueAuxiliar1.enqueue(elementAuxiliar); 
+			}
+		}
+		
+		while(!queueAuxiliar1.isEmpty()) {
+			this.enqueue(queueAuxiliar1.dequeue()); // juntar na fila original a primeira parte
+		}
+		while (!queueAuxiliar2.isEmpty()) {
+			this.enqueue(queueAuxiliar2.dequeue()); // juntar na fila orignal a segunda parte com os elementos iguais identificados no parâmetro
+		}
+	}
 }
