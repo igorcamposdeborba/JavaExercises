@@ -120,9 +120,7 @@ public class StaticQueue<E> implements Queue<E> {
 		}
 	}
 	
-	// 6) Implemente uma sobrecarga do método enqueue que recebe como parâmetro uma fila, 
-	// em vez de um elemento. Esse método deve adicionar ao final da fila corrente os elementos 
-	// da fila passada como parâmetro, mantendo a ordem original. 
+	// 5) Implemente uma sobrecarga do método enqueue que recebe como parâmetro uma quantidade de elementos variáveis, mantendo a primeira pilha na frente. 
 	public void concatenateQueue (Queue<E> original, E ... variableArgs) { // argumentos de tamanho variável
 		StaticQueue<E> queueAuxiliar = new StaticQueue<E>(original.numElements() + variableArgs.length);
 		
@@ -133,5 +131,27 @@ public class StaticQueue<E> implements Queue<E> {
 		for (int i=0; i < variableArgs.length; i++) {
 			queueAuxiliar.enqueue((E) variableArgs); // adicionar argumentos de tamanho variável
 		}
+	}
+	
+	// 6) Implemente uma sobrecarga do método enqueue que recebe como parâmetro uma fila, em vez de um elemento. 
+	// Esse método deve adicionar ao final da fila corrente os elementos da fila passada como parâmetro, mantendo a ordem original.
+	public E enqueue(Queue<E> queueOriginal, Queue<E> queueAdd) throws UnderflowException {
+		// tratar erro se alguma das listas está vazia
+		if (queueOriginal.isEmpty() || queueAdd.isEmpty()) {
+			throw new UnderflowException();
+		}
+		
+		// salvar uma fila auxiliar
+		StaticQueue<E> queueAuxiliar = new StaticQueue<E>(queueOriginal.numElements() + queueAdd.numElements());
+		
+		// retirar todos os elementos e colocar na fila auxiliar
+		while(!queueOriginal.isEmpty()) {
+			queueAuxiliar.enqueue(queueOriginal.dequeue());	
+		}
+		while(!queueAdd.isEmpty()) {
+			queueAuxiliar.enqueue(queueAdd.dequeue());
+		}
+		
+		return (E) queueAuxiliar;
 	}
 }
