@@ -177,4 +177,41 @@ public class StaticQueue<E> implements Queue<E> {
 			this.enqueue(queueAuxiliar.dequeue());
 		}
 	}
+	
+		// 9) Implemente um método equals para a fila. Uma fila será igual a outra se contiver os mesmos elementos, 
+	// dispostos na mesma ordem. Para comparar os elementos, use também o método equals.
+	public boolean equalsQueues(Queue<E> queue2) {
+		if (this.numElements() != queue2.numElements()) {
+			return false;
+		}
+		boolean flag = true; // informar se as filas são iguais
+		
+		// salvar filas auxiliares
+		StaticQueue<E> queueAuxiliar1 = new StaticQueue<E>(this.numElements());
+		StaticQueue<E> queueAuxiliar2 = new StaticQueue<E>(this.numElements());
+		
+		// salvar elementos para comparar depois
+		E auxiliar1 = (E) new Object();
+		E auxiliar2 = (E) new Object();
+		
+		while(!this.isEmpty()) {
+			auxiliar1 = this.dequeue();
+			auxiliar2 = queue2.dequeue();
+			
+			// comparar se os elementos não são iguais
+			if (!auxiliar1.equals(auxiliar2)) {
+				flag = false;
+			}
+			queueAuxiliar1.enqueue(auxiliar1); // colocar a fila original na fila auxiliar
+			queueAuxiliar2.enqueue(auxiliar2); // colocar a fila original na fila auxiliar
+		}
+		
+		// colocar fila auxiliar na fila original
+		while(!queueAuxiliar1.isEmpty()) {
+			this.enqueue(queueAuxiliar1.dequeue()); // retirar o elemento da fila auxiliar
+			queue2.enqueue(queueAuxiliar2.dequeue()); // retirar o elemento da fila auxiliar
+		}
+		
+		return flag;
+	}
 }
