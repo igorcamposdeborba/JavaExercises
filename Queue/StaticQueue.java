@@ -178,7 +178,7 @@ public class StaticQueue<E> implements Queue<E> {
 		}
 	}
 	
-		// 9) Implemente um método equals para a fila. Uma fila será igual a outra se contiver os mesmos elementos, 
+	// 8) Implemente um método equals para a fila. Uma fila será igual a outra se contiver os mesmos elementos, 
 	// dispostos na mesma ordem. Para comparar os elementos, use também o método equals.
 	public boolean equalsQueues(Queue<E> queue2) {
 		if (this.numElements() != queue2.numElements()) {
