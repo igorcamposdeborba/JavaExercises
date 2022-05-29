@@ -154,4 +154,27 @@ public class StaticQueue<E> implements Queue<E> {
 		
 		return (E) queueAuxiliar;
 	}
+	
+	// 7) Implemente o método abaixo, que insere um elemento na primeira posição da fila.
+	// public void enqueueWithPriority(E element)
+	public void enqueueWithPriority(E element) throws UnderflowException {
+		// exception se a lista está vazia ou não tem valor no parâmetro
+		if (last == -1 || element == null) {
+			throw new UnderflowException();
+		}
+		// salvar uma fila auxiliar
+		StaticQueue<E> queueAuxiliar = new StaticQueue<E>(elements.length + 1);
+		
+		queueAuxiliar.enqueue(element); // adicionar elemento na primeira posição da fila
+		
+		// colocar na fila AUXILIAR todos os elementos
+		while (!this.isEmpty()) {
+			queueAuxiliar.enqueue(this.dequeue());
+		}
+		
+		// passar para a fila ORIGINAL todos os elementos
+		while (!queueAuxiliar.isEmpty()) {
+			this.enqueue(queueAuxiliar.dequeue());
+		}
+	}
 }
