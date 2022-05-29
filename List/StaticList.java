@@ -118,4 +118,77 @@ public class StaticList<E> implements List<E> {
 			s += elements[i] + " ";
 		return s;
 	}
+	
+	// 1) Retornar números pares de uma lista, via array
+	public Integer[] evenNumbers (List<Integer> lista) {
+		int nullSpaces = 0;
+		int even = 0;
+		
+		// Contar espaços vazios da nova lista
+		for (int i = 0; i < lista.numElements(); i++) {
+			if (lista.get(i) % 2 > 0) {
+				nullSpaces++;
+			}
+		}
+		Integer [] evenArray = new Integer[lista.numElements() - nullSpaces]; // criar nova lista e diminuir os espaços vazios
+		
+		// Colocar numa nova lista apenas números pares
+		for (int i=0; i < lista.numElements(); i++) {
+			if (lista.get(i) % 2 == 0) {
+				evenArray[even++] = lista.get(i);
+			}
+		}
+		return evenArray;
+	}
+	
+	// 2) Intercalar listas
+	public List<Character> mergeLists(List<Character> t1, List<Character> t2) {
+		List<Character> newList = new StaticList<>(t1.numElements() + t2.numElements());
+		
+		int countT1 = 0; 
+		int countT2 = 0;
+		
+		while (true) {
+			if (countT1 < t1.numElements()) {
+				newList.insert(t1.get(countT1++), newList.numElements());
+			}
+			if (countT2 < t2.numElements()) {
+				newList.insert(t2.get(countT2++), newList.numElements());
+			}
+			if (countT1 >= t1.numElements()
+				&& countT2 >= t2.numElements()) {
+				break;
+			}
+		}
+		return newList;
+	}
+	
+	// 3) Inserir a segunda lista no início da primeira lista
+	public void prependList(List<Double> t1, List<Double> t2) {
+		for (int i = t2.numElements() -1; i>=0; i--) {
+			t1.insert(t2.get(i), 0);		
+		}
+		System.out.println(t1);
+	}
+	
+	// 4) Implemente um método que remove da lista um elemento passado como parâmetro. Esse método retorna true quando o elemento é achado e removido, 
+	// false caso contrário. Será removida apenas a primeira ocorrência do elemento.
+	public boolean remove(E element) {
+		// salvar lista auxiliar
+		StaticList<E> listAuxiliar = new StaticList<E>(this.numElements);
+		boolean flag = false;
+		
+		E elementAuxiliar1 = (E) new Object();
+		int counter1 = 0;
+		
+		while (!this.isEmpty()) {
+			elementAuxiliar1 = this.remove(counter1); // retirar o elemento atual para usar depois
+			
+			if (elementAuxiliar1.equals(element)) { // encontrou elemento
+				return true;
+			}
+		}
+
+		return flag;
+	}
 }
