@@ -214,4 +214,30 @@ public class StaticQueue<E> implements Queue<E> {
 		
 		return flag;
 	}
+	
+	// 9) Implemente um método clone para a fila. Esse método deve retornar uma nova fila contendo os mesmos elementos da atual. 
+	// Os elementos em si não devem ser duplicados.
+	public Queue<E> clone(){
+		// processo: esvaziar fila original em duas filas cópias e depois voltar os elementos para a fila original esvaziando uma das filas cópias.
+		StaticQueue<E> queueAuxiliar1 = new StaticQueue<E>(this.numElements());
+		StaticQueue<E> queueAuxiliar2 = new StaticQueue<E>(this.numElements());
+		
+		// salvar cada elemento para depois salvar nas filas auxiliares
+		E elementAuxiliar = (E) new Object();
+		
+		// salvar elementos nas filas auxiliares
+		while(!this.isEmpty()) {
+			elementAuxiliar = this.dequeue();
+			
+			queueAuxiliar1.enqueue(elementAuxiliar);
+			queueAuxiliar2.enqueue(elementAuxiliar);
+		}
+		
+		// restaurar fila original: retirando todos os elementos da fila auxiliar e colocando na original
+		while(!queueAuxiliar1.isEmpty()) {
+			this.enqueue(queueAuxiliar1.dequeue());
+		}
+		
+		return queueAuxiliar2;
+	}
 }
