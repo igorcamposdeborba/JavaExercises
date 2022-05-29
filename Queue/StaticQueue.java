@@ -299,4 +299,24 @@ public class StaticQueue<E> implements Queue<E> {
 			this.enqueue(queueAuxiliar2.dequeue()); // juntar na fila orignal a segunda parte com os elementos iguais identificados no parâmetro
 		}
 	}
+	
+	// 12) Implemente na classe StaticQueue um método que aumente a capacidade de armazenamento da fila, se necessário, para o valor passado como parâmetro. 
+	// Os elementos atuais devem ser preservados.
+	public void ensureCapacity(int capacity) throws UnderflowException {
+		// salvar fila auxiliar
+		StaticQueue<E> auxiliarQueue = new StaticQueue<E>(this.numElements());
+		int oldCapacity = this.numElements();
+		
+		// passar os elementos da fila original para a fila auxiliar
+		while(!this.isEmpty()) {
+			auxiliarQueue.enqueue(this.dequeue());
+		}
+		
+		this.elements = (E[]) new Object[oldCapacity + capacity];
+		
+		while(!auxiliarQueue.isEmpty()) {
+			this.enqueue(auxiliarQueue.dequeue());
+		}
+		
+	}
 }
