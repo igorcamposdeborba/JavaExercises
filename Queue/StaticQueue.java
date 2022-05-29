@@ -240,4 +240,37 @@ public class StaticQueue<E> implements Queue<E> {
 		
 		return queueAuxiliar2;
 	}
+	
+		// Implemente o método split, de acordo com a assinatura definida a seguir, que divide a fila em duas partes. 
+	// A fila corrente deve permanecer somente com os elementos do início até a primeira ocorrência de element, inclusive. 
+	// O restante dos elementos deve ser retornado em uma nova fila. Para comparar os elementos, utilize o método equals.
+	public Queue<E> split(E element) {
+		// salvar filas auxiliares
+		StaticQueue<E> queueAuxiliar1 = new StaticQueue<E>(this.numElements());
+		StaticQueue<E> queueAuxiliar2 = new StaticQueue<E>(this.numElements());
+		
+		E elementAuxiliar = (E) new Object(); // salvar elemento num objeto auxiliar
+		boolean flag = false; // flag para comparar se o elemento do parâmetro é igual ao elemento atual da fila para 
+		
+		while(!this.isEmpty()) {
+			elementAuxiliar = this.dequeue(); // colocar o elemento atual no objeto elementAuxiliar
+			
+			if (flag == false) {
+				queueAuxiliar1.enqueue(elementAuxiliar); // colocar na fila auxiliar 1 o elemento atual
+			}
+			if (flag == true) {
+				queueAuxiliar2.enqueue(elementAuxiliar);  // colocar na fila auxiliar 2 o elemento atual porque encontrou o element do parâmetro
+			}
+			
+			if (elementAuxiliar.equals(element)) { // setar que encontrou o elemento
+				flag = true;
+			}
+		}
+		
+		while(!queueAuxiliar1.isEmpty()) {
+			this.enqueue(queueAuxiliar1.dequeue());
+		}
+		
+		return queueAuxiliar2; // retornar apenas o final da fila depois do element do parâmetro
+	}
 }
