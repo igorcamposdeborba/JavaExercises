@@ -1,7 +1,7 @@
 package entities;
 
 public class Invoice {
-	private Double basicPayment; // classe wrappper tipo Double para aceitar null na integração com o banco de dados
+	private Double basicPayment; // classe wrappper tipo Double para aceitar null na possível integração com o banco de dados
 	private Double tax;
 	
 	public Invoice(Double basicPayment, Double tax) {
