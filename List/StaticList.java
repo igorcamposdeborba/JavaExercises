@@ -255,16 +255,19 @@ public class StaticList<E> implements List<E> {
 		
 		int counter = 0;
 		// insert each element inner temporary list starting from the end
-		for (int i = 0; i < this.numElements; i++) {
+		for (int i = this.numElements -1; i >= 0; i--) {
 			E item = this.remove(i);
 			temporaryList.insert(item, counter);
 			counter++;
 		}
+		System.out.println(temporaryList);
 		
 		// restore original list with inverted elements
 		int i = 0;
+		int counterTempList = temporaryList.numElements -1;
 		while (!temporaryList.isEmpty()) {
-			E item = temporaryList.remove(i);
+			E item = temporaryList.remove(counterTempList);
+			counterTempList--;
 			this.insert(item, i);
 		}
 	}
