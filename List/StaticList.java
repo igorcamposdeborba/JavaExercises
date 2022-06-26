@@ -191,4 +191,60 @@ public class StaticList<E> implements List<E> {
 
 		return flag;
 	}
+	
+	// 5) Implemente um método insertAfter, abaixo, que insere o elemento obj2 uma posição após o elemento obj1. Considere a primeira ocorrência de obj1.
+	// Se obj1 não for encontrado, gere uma exceção apropriada.
+	public void insertAfter(E obj1, E obj2) throws NullPointerException {
+		// salvar lista auxiliar
+		StaticList<E> auxiliarList = new StaticList<E>(this.numElements + 2);
+		E elementAuxiliar = (E) new Object();
+		boolean flag = false;
+		boolean flagException = false;
+		int dimension = this.numElements();
+		int index = 0;
+		
+			for (int i=0; i < this.numElements; i++) {
+				if (this.get(i) == obj1) { // encontrar objeto 1 na lista
+					flag = true;// elemento encontrado
+					flagException = true;
+					index = i + 2;
+				}
+				// copiar para lista secundária a partir do elemento encontrado
+				if (flag == true) {
+					elementAuxiliar = this.remove(i); // retirar elemento atual para adicionar na lista auxiliar
+					auxiliarList.insert(elementAuxiliar, i); // adicionar na lista auxiliar o elemento
+					
+					// adicionar na lista o obj2 na posição atual vazia da lista original
+					this.insert(obj2, i);
+				}
+				flag = false;	
+			}
+			// adicionar na lista original o restante dos elementos que estão na lista temporária
+			for (int i = index; i < dimension; i++) { // começar a inserção do próximo índice vazio
+				this.insert(elementAuxiliar, i);
+			}
+			
+			if (flagException == true) {
+				throw new NullPointerException();
+			}
+			
+		}
+	
+	
+	// 6) Implemente um método que troca de lugar os objetos localizados nas posições passadas como parâmetro. 
+	// Se alguma das posições for inválida, deve ser gerada a exceção do Java IndexOutOfBoundsException.
+	public void swap (int pos1, int pos2) throws IndexOutOfBoundsException {
+		if (pos1 < 0 || pos1 >= this.elements.length || pos2 < 0 || pos2 >= this.elements.length)
+			throw new IndexOutOfBoundsException();
+		
+		if (pos1 != pos2) {
+			// salvar elementos numa variável para usar depois
+			E value1 = this.remove(pos1); // usei tipo genérico E porque a lista pode ser de qualquer tipo de dado.
+			E value2 = this.remove(pos2); //this faz referência ao objeto da lista atual
+			
+			// inverter ordem
+			this.insert(value2, pos1);
+			this.insert(value1, pos2);
+		}
+	}
 }
