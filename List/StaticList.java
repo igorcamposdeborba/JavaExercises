@@ -260,7 +260,6 @@ public class StaticList<E> implements List<E> {
 			temporaryList.insert(item, counter);
 			counter++;
 		}
-		System.out.println(temporaryList);
 		
 		// restore original list with inverted elements
 		int i = 0;
