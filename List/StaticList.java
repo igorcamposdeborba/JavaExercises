@@ -247,4 +247,25 @@ public class StaticList<E> implements List<E> {
 			this.insert(value1, pos2);
 		}
 	}
+	
+	// 7) Implemente um método que inverte a ordem dos elementos da lista.
+	public void flip() {
+		// temporary list
+		StaticList <E> temporaryList = new StaticList<E>(this.numElements());
+		
+		int counter = 0;
+		// insert each element inner temporary list starting from the end
+		for (int i = 0; i < this.numElements; i++) {
+			E item = this.remove(i);
+			temporaryList.insert(item, counter);
+			counter++;
+		}
+		
+		// restore original list with inverted elements
+		int i = 0;
+		while (!temporaryList.isEmpty()) {
+			E item = temporaryList.remove(i);
+			this.insert(item, i);
+		}
+	}
 }
