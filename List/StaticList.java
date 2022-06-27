@@ -270,4 +270,27 @@ public class StaticList<E> implements List<E> {
 			this.insert(item, i);
 		}
 	}
+	
+	// 8) Implemente uma sobrecarga do método insert que recebe como parâmetro uma lista, em vez de um elemento. 
+	// Esse método deve adicionar à lista corrente os elementos daquela passada como parâmetro, a partir da posição indicada.
+	/**
+	 * Insere uma lista de elementos na posição indicada.
+	 * @param list A lista a ser inserida
+	 * @param pos A posição onde o elemento será inserido
+	 * 				(iniciando em 0)
+	 */
+	public void insert (List<E> list, int pos) throws IllegalStateException {
+		if (list.numElements() > (this.elements.length - this.numElements()))
+			throw new IllegalStateException("Lista maior que o espaço disponível");
+		
+		E element; // variável temporária
+		int counter = this.numElements;
+		// passar por toda a lista
+		for (int j=0; j < list.numElements(); j++) {
+			element = list.get(j); // armazenar o elemento na variável temporária 
+			this.insert(element, counter); // inserir o elemento da lista na lista maior
+			counter++;
+			numElements++;
+		}
+	 }
 }
