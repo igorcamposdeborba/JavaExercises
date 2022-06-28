@@ -293,4 +293,18 @@ public class StaticList<E> implements List<E> {
 			numElements++;
 		}
 	 }
+	
+	// 9) Implemente um método que remove ocorrências múltiplas de elementos na lista. 
+	// Para cada elemento contido na lista, somente a primeira ocorrência deve ser mantida.
+	public void dedup() {
+		// comparar o elemento atual com o próximo e remover o segundo elemento duplicado
+		for (int i=0; i < this.numElements; i++) {
+			for (int j = i + 1; j < this.numElements; j++) {
+				if (this.get(i).equals(this.get(j))) {
+					this.remove(j); // remover o segundo duplicado
+					j--; // decrementar porque eu removi o j duplicado
+				}
+			}
+		}
+	}
 }
