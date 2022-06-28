@@ -327,4 +327,21 @@ public class StaticList<E> implements List<E> {
 		}
 		return false;
 	}
+	
+	// 11) Implemente um método clone para a lista. Esse método deve retornar uma nova lista contendo os mesmos elementos da atual. 
+	// Os elementos em si não devem ser duplicados.
+	public StaticList<E> clone() {
+		StaticList <E> clone = new StaticList<E>(this.numElements);
+		
+		E element;
+		// passar pela lista
+		for (int i=0; i < this.numElements; i++) {
+			// guardar elemento
+			element = this.get(i);
+			// colocar dentro da lista clone o elemento
+			clone.insert(element, i);
+		}
+		
+		return clone;
+	}
 }
