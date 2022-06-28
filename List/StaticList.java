@@ -307,4 +307,24 @@ public class StaticList<E> implements List<E> {
 			}
 		}
 	}
+	
+	//10) Implemente um método equals para a lista. Uma lista será igual a outra se contiver os mesmos elementos, dispostos na mesma ordem. 
+	// Para comparar os elementos, use também o método equals. Pesquise como desenvolver o método equals de um objeto no Java.
+	public boolean equalsList(List<E> list) {
+		int counterSameElements = 0;
+		
+		// comparar o elemento atual com o próximo e remover o segundo elemento duplicado
+		for (int i=0; i < this.numElements; i++) {
+			for (int j = i; j < this.numElements; j++) {
+				if (this.get(i).equals(list.get(j))) {
+					counterSameElements++; // contar que elementos são iguais
+				}
+			}
+		}
+		// se listas tiverem o mesmo número de elementos iguais, as listas são iguais
+		if (counterSameElements == this.numElements) {
+			return true;
+		}
+		return false;
+	}
 }
