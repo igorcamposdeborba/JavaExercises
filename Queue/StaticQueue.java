@@ -78,7 +78,24 @@ public class StaticQueue<E> implements Queue<E> {
 		}
 	}
 	
-	// Implemente, em uma classe qualquer, um método que remove todas as ocorrências 
+	// 2) Implemente, em uma classe qualquer, um método que recebe duas filas q1 e q2 de inteiros e transfere os elementos da segunda 
+	// para a primeira de modo que eles fiquem na frente dos originais. Exemplo: supondo q1 = {1, 2, 3, 4} e q2 = {5, 6, 7, 8}, após
+	// a chamada do método devemos ter q1 = {5, 6, 7, 8, 1, 2, 3, 4} e q2 = {}. Dica: use uma fila auxiliar.
+	public void prependQueue(Queue<Integer> q1, Queue<Integer> q2) {
+		int dimension2 = q2.numElements();
+		int dimension1 = q1.numElements();
+		
+		Queue<Integer> temporaryQueue = new StaticQueue<Integer>(dimension1 + dimension2);
+		
+		for (int i=0; i < dimension2; i++) {
+			temporaryQueue.enqueue(q2.dequeue());
+		}
+		for (int i=0; i < dimension1; i++) {
+			temporaryQueue.enqueue(q1.dequeue());
+		}
+	}
+	
+	// 3) Implemente, em uma classe qualquer, um método que remove todas as ocorrências 
 	// de um determinado elemento em uma fila de caracteres. Considere a assinatura a seguir:
 	public void exterminateFromQueue(Queue<Character> q, char element) {
 		// salvar uma fila auxiliar para guardar só os elementos que não têm o elemento que quero que não esteja na fila
@@ -97,7 +114,7 @@ public class StaticQueue<E> implements Queue<E> {
 		}
 	}
 	
-	// Implemente o método contains, definido abaixo, que informa se a fila contém determinado elemento.
+	// 4) Implemente o método contains, definido abaixo, que informa se a fila contém determinado elemento.
 	public boolean contains (E element) {
 		while (!isEmpty()) {
 			if (front() == element) { // comparar se o valor atual é igual ao element buscado
@@ -108,7 +125,7 @@ public class StaticQueue<E> implements Queue<E> {
 		return false; // não encontrado o element
 	}
 	
-	// Implemente um método que inverte a ordem dos elementos da fila.
+	// 5) Implemente um método que inverte a ordem dos elementos da fila.
 	public void flip() {
 		E arrayAuxiliar[] = (E[]) new Object[numElements()]; // array auxiliar para guardar valores para depois adicionar na fila na ordem inversa
 		for (int i=0; i < arrayAuxiliar.length; i++) {
