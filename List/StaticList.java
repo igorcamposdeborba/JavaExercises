@@ -359,4 +359,22 @@ public class StaticList<E> implements List<E> {
 
 		return removedElements;
 	}
+	
+	// 13) Implemente um método split que divide a lista em duas partes. 
+	// A lista corrente deve ficar somente com os elementos da início até uma posição antes da indicada, 
+	// e o método deve retornar uma nova lista contendo os elementos da posição indicada até o final.
+	public List<E> split (int pos) {
+		List<E> newList = new StaticList<>(this.numElements);
+		int position = 0;
+		int newSize = this.numElements - pos;
+		int dimension = this.numElements;
+		
+		for (int i = dimension-1; i >= pos; i--) {
+				newList.insert(this.remove(i), position++);
+		}
+		System.out.println("lista original depois " + this.toString());
+		System.out.println("lista temporaria " + newList.toString());
+		
+		return newList;
+	}
 }
