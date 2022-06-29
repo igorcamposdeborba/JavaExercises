@@ -348,15 +348,13 @@ public class StaticList<E> implements List<E> {
 	// 12) Implemente um método que remove da lista os elementos compreendidos entre as posições ini e fim (inclusive). 
 	// Ele deve retornar a quantidade de elementos removidos.
 	public int remove(int start, int end) {
-		StaticList <E> temporaryList = new StaticList<E>(this.numElements);
 		int removedElements = 0;
-		int positionList = 0;
 		int newSize = this.numElements - (end - start);
 		
 		// comparar o elemento atual no range do start ao end
 		for (int i = newSize; i >= start; i--) {
 			removedElements++;
-			temporaryList.insert(this.remove(i), positionList++);
+			this.remove(i);
 		}
 
 		return removedElements;
