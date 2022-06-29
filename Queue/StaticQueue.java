@@ -335,17 +335,4 @@ public class StaticQueue<E> implements Queue<E> {
 			this.enqueue(auxiliarQueue.dequeue());
 		}
 	}
-	
-	// 13) Implemente na classe StaticQueue um método que aumente a capacidade de armazenamento da fila, se necessário, 
-	// para o valor passado como parâmetro. Os elementos atuais devem ser preservados.
-	public void ensureCapacity (int capacity) {
-		StaticQueue <E> temporaryQueue = new StaticQueue<E>(capacity);
-		
-		int dimension = this.numElements();
-		
-		// passar para a fila temporária dos elementos
-		for (int i=0; i < dimension; i++) {
-			temporaryQueue.enqueue(this.dequeue());
-		}
-	}
 }
