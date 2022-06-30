@@ -89,4 +89,16 @@ public class StaticStack<E> implements Stack<E> {
 		return temporary;
 	}
 	
+	// 4) Implemente um método que recebe duas pilhas s1 e s2 e transfere os elementos da primeira para a segunda de modo que os elementos 
+	// em s2 fiquem na mesma ordem que em s1. Dica: use uma pilha auxiliar.
+	public void transferElements(Stack <E> s1, Stack<E> s2) {
+		StaticStack <E> temporary = new StaticStack<E>(s1.numElements() + s2.numElements());
+		
+		while (!s1.isEmpty())
+			temporary.push(s1.pop());
+		
+		while(!temporary.isEmpty())
+			s2.push(temporary.pop());
+	}
+	
 }
