@@ -101,4 +101,30 @@ public class StaticStack<E> implements Stack<E> {
 			s2.push(temporary.pop());
 	}
 	
+	// 5) Implemente em uma classe qualquer o seguinte método: void prependStack(Stack<Integer> p1, Stack<Integer> p2)
+	// Esse método deve armazenar todos os elementos de p2 em p1 de maneira que eles fiquem abaixo dos elementos originais de p1, 
+	// mantendo os dois conjuntos de elementos em sua ordem original. Podem ser utilizados vetores ou pilhas auxiliares.
+	public void prependStack(Stack<Integer> p1, Stack<Integer> p2) {
+		StaticStack <Integer> temporary1 = new StaticStack <Integer>(p1.numElements());
+		StaticStack <Integer> temporary2 = new StaticStack <Integer>(p2.numElements());
+		
+		// salvar dados da pilha 1 numa pilha temporária para depois colocar no topo da pilha
+		while (!p1.isEmpty())
+			temporary1.push(p1.pop());
+		
+		// salvar dados da pilha 2 numa pilha temporária para depois colocar no topo da pilha
+		while (!p2.isEmpty())
+			temporary2.push(p2.pop());
+
+		// inserir a pilha temporária 2 na base da pilha 1
+		while (!temporary2.isEmpty())
+			p1.push(temporary2.pop());
+		
+		// restaurar pilha 1: inserir a pilha temporária 1 na pilha 1
+		while (!temporary1.isEmpty())
+			p1.push(temporary1.pop());
+		
+		System.out.println(p1);
+	}
+	
 }
