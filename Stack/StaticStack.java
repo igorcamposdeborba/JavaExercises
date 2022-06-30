@@ -127,4 +127,20 @@ public class StaticStack<E> implements Stack<E> {
 		System.out.println(p1);
 	}
 	
+	// 8) Implemente um método que recebe uma pilha como parâmetro e inverte a ordem dos seus elementos. 
+	// Use somente outras pilhas como estruturas auxiliares
+	public void reverse(Stack<E> s1) {
+		StaticStack <E> temporary1 = new StaticStack<E>(s1.numElements());
+		StaticStack <E> temporary2 = new StaticStack<E>(s1.numElements());
+		
+		
+		while (!s1.isEmpty()) 
+			temporary1.push(s1.pop()); // adicionar na pilha 1 para inverter a ordem na próxima pilha
+		
+		while (!temporary1.isEmpty()) 
+			temporary2.push(temporary1.pop()); // adicionar na pilha 1 para inverter a ordem ao restaurar a pilha
+		
+		while (!temporary2.isEmpty())
+			s1.push(temporary2.pop());
+	}
 }
