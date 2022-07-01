@@ -150,12 +150,10 @@ public class StaticStack<E> implements Stack<E> {
 	public void search(Stack<E> s1, E search) {
 		StaticStack <E> temporary = new StaticStack<E>(s1.numElements());
 		int counter = -1;
-		//int i = 0;
 		
-		//while (!s1.isEmpty()) {
+		// contar se o elemento está na pilha, desempilhando-a
 		for (int i = s1.numElements(); i > 0; i--) {
 			if (s1.top().equals(search)) { // se encontrar o elemento, contar a posição dele
-				//counter = ++i;
 				counter = i - 1;
 				temporary.push(s1.pop());
 			} else {
@@ -163,10 +161,33 @@ public class StaticStack<E> implements Stack<E> {
 			}
 		}
 		
+		// restaurar pilha
 		while (!temporary.isEmpty()) {
 			s1.push(temporary.pop());
 		}
 		
 		System.out.println("Element position: " + counter);
+	}
+	
+	// 10) Implemente o método contains, definido abaixo, que informa se a pilha contém determinado elemento   public boolean contains(E element)
+	public boolean contains (E element) {
+		StaticStack <E> temporary = new StaticStack<>(this.numElements());
+		
+		E el;
+		// buscar se o elemento está na pilha, desempilhando-a
+		while (!this.isEmpty()) {
+			el = this.pop();
+			if (el.equals(element)) {
+				return true; // encontrou o elemento
+			}
+			temporary.push(el); // adicionar na pilha temporária
+		}
+		
+		// restaurar pilha
+		while (!temporary.isEmpty()) {
+			this.push(temporary.pop());
+		}
+		
+		return false;// retornar falso caso não encontrou o elemento
 	}
 }
