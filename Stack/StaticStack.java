@@ -138,9 +138,9 @@ public class StaticStack<E> implements Stack<E> {
 			temporary1.push(s1.pop()); // adicionar na pilha 1 para inverter a ordem na próxima pilha
 		
 		while (!temporary1.isEmpty()) 
-			temporary2.push(temporary1.pop()); // adicionar na pilha 1 para inverter a ordem ao restaurar a pilha
+			temporary2.push(temporary1.pop()); // adicionar na pilha 2 para inverter a ordem ao restaurar a pilha
 		
-		while (!temporary2.isEmpty())
+		while (!temporary2.isEmpty()) // restaurar pilha
 			s1.push(temporary2.pop());
 	}
 	
