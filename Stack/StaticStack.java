@@ -143,4 +143,30 @@ public class StaticStack<E> implements Stack<E> {
 		while (!temporary2.isEmpty())
 			s1.push(temporary2.pop());
 	}
+	
+	// 9) Escreva um algoritmo para verificar se um dado elemento está presente em uma pilha. 
+	// Em caso positivo, o algoritmo deve fornecer também a posição do item na pilha, considerando a base como posição 0. 
+	// A pilha deve permanecer a mesma após a execução do procedimento.
+	public void search(Stack<E> s1, E search) {
+		StaticStack <E> temporary = new StaticStack<E>(s1.numElements());
+		int counter = -1;
+		//int i = 0;
+		
+		//while (!s1.isEmpty()) {
+		for (int i = s1.numElements(); i > 0; i--) {
+			if (s1.top().equals(search)) { // se encontrar o elemento, contar a posição dele
+				//counter = ++i;
+				counter = i - 1;
+				temporary.push(s1.pop());
+			} else {
+				temporary.push(s1.pop());
+			}
+		}
+		
+		while (!temporary.isEmpty()) {
+			s1.push(temporary.pop());
+		}
+		
+		System.out.println("Element position: " + counter);
+	}
 }
