@@ -258,4 +258,23 @@ public class StaticStack<E> implements Stack<E> {
 		else 
 			return false;
 	}
+	
+	// 14) Implemente um método clone para a pilha. Esse método deve retornar uma nova pilha contendo os mesmos elementos da atual. 
+	// Os elementos em si não devem ser duplicados.
+	public StaticStack<E> clone () {
+		StaticStack <E> temporary = new StaticStack<E>(this.numElements());
+		StaticStack <E> clone = new StaticStack<E>(this.numElements());
+		
+		// colocar na pilha temporária
+		while (!this.isEmpty()) {
+			temporary.push(this.pop());
+		}
+		
+		// inverter pilha para a ordem correta igual da pilha original
+		while (!temporary.isEmpty()) {
+			clone.push(temporary.pop());
+		}
+		
+		return clone;
+	}	
 }
