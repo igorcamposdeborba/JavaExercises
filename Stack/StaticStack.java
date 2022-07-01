@@ -209,4 +209,28 @@ public class StaticStack<E> implements Stack<E> {
 			this.push(temporary2.pop()); // restaurar pilha
 		}
 	}
+	
+	// 12) Implemente uma sobrecarga do método push que recebe como parâmetro uma pilha, em vez de um elemento. 
+	// Esse método deve adicionar à pilha corrente os elementos da pilha passada como parâmetro, 
+	// porém mantendo a ordem original — ou seja, o elemento do topo da pilha passada como parâmetro deve ficar no topo da pilha corrente.
+	public void push(StaticStack <E> s1) throws OverflowException {
+		if (isFull())
+			throw new OverflowException();
+		
+		StaticStack <E> temporary = new StaticStack<E>(this.numElements() + s1.numElements());
+		
+		// passar pilha original para a pilha temporária
+		while (!this.isEmpty()) {
+			temporary.push(this.pop());
+		}
+		// adicionar na pilha temporária a pilha do parâmetro
+		while (!s1.isEmpty()) {
+			temporary.push(s1.pop());
+		}
+		
+		// restaurar pilha original
+		while (!temporary.isEmpty()) {
+			this.push(temporary.pop());
+		}
+	}
 }
