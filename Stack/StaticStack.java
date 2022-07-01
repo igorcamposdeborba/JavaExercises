@@ -233,4 +233,29 @@ public class StaticStack<E> implements Stack<E> {
 			this.push(temporary.pop());
 		}
 	}
+	
+	// 13) Implemente um método equals para a pilha. Uma pilha será igual a outra se contiver os mesmos elementos, empilhados na mesma ordem. 
+	// Para comparar os elementos, use também o método equals
+	public boolean equals(StaticStack <E> s1) {
+		StaticStack <E> temporary1 = new StaticStack<E>(this.numElements());
+		StaticStack <E> temporary2 = new StaticStack<E>(this.numElements());
+		E elementStack1, elementStack2;
+		
+		// comparar elementos se se são iguais
+		while (!this.isEmpty()) {
+			elementStack1 = this.pop(); // pilha original
+			elementStack2 = s1.pop(); // pilha do parâmetro
+			if (elementStack1.equals(elementStack2)) {
+				temporary1.push(elementStack1); // adicionar na pilha temporária a pilha original
+				temporary2.push(elementStack2); // adicionar na pilha temporária a pilha do parâmetro
+			}
+		}
+		System.out.println(temporary1.numElements());
+		System.out.println(temporary2.numElements());
+		
+		if (temporary1.numElements() == temporary2.numElements() && temporary1.numElements() > 0)
+			return true;
+		else 
+			return false;
+	}
 }
