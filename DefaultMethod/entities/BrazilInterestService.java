@@ -10,6 +10,7 @@ public class BrazilInterestService implements InterestService {
 		this.interestRate = interestRate;
 	}
 	
+	@Override
 	public double getInterestRate() {
 		return interestRate;
 	}
