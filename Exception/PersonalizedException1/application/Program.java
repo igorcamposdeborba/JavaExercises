@@ -15,9 +15,11 @@ public class Program {
 		
 		} catch (EmptyString | OutboundIntervalNumber e) { // Personalized exceptions
 			System.err.println("Error: " + e.getMessage()); // Show only error message with getMessage
+		} finally {
+			System.out.println("Everthing execute this");
 		}
 		
-		System.out.println("End");
+		System.out.println("End: that's all folks");
 		
 	}
 }
