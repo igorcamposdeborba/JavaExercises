@@ -11,7 +11,7 @@ public class Validate {
 		if (student.name == null || student.name.trim().isEmpty()) 
 			throw new EmptyString("Name");
 		if (student.grade < 0 || student.grade > 10)
-			throw new OutboundIntervalNumber("Grade");
+			throw new OutboundIntervalNumber("Grade");  // exception unchecked: don't need throws term
 		
 	}
 }
