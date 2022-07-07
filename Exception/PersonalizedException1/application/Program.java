@@ -13,10 +13,8 @@ public class Program {
 		
 		Validate.student(student);
 		
-		} catch (EmptyString e) { // Personalized exception
+		} catch (EmptyString | OutboundIntervalNumber e) { // Personalized exceptions
 			System.err.println("Error: " + e.getMessage()); // Show only error message with getMessage
-		} catch (OutboundIntervalNumber e) {
-			System.err.println("Error: " + e.getMessage());
 		}
 		
 		System.out.println("End");
