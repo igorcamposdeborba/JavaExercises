@@ -11,6 +11,7 @@ public class Main {
 		Locale.setDefault(Locale.US);
 		
 		// Forma: CRIA/RECRIA o arquivo sempre que instanciar new FileWriter(path);
+		// Forma: ADICIONA ao final do arquivo sempre que instanciar new FileWriter(path, true); // com true no final
 		String path = "src\\fileWriterCreateFile\\out.txt"; // arquivo de saída
 				
 		ArrayList <String> lines = new ArrayList<String>();
