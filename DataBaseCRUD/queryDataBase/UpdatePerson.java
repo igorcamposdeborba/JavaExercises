@@ -29,7 +29,7 @@ public class UpdatePerson {
 		
 		ResultSet resultSearch = statement.executeQuery(); // executar SQL
 		
-		if (resultSearch.next()) {
+		if (resultSearch.next()) { // se o resultado da consulta sql nao for vazio
 			
 			// imprimir pessoas do banco de dados
 			printPerson(resultSearch);		
