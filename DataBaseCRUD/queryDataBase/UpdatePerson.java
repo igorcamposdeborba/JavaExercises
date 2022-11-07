@@ -16,7 +16,8 @@ public class UpdatePerson {
 		Scanner input = new Scanner(System.in);
 
 		String sqlSearchName = "SELECT * FROM people WHERE name LIKE ?;";
-		String sqlReplace = "UPDATE people SET name = ? WHERE id= ?";
+		String sqlReplace = "UPDATE people SET name = ? WHERE id= ?;";
+		String sqlSearchAll = "SELECT * FROM people;";
 		
 		System.out.println("Digite um nome para buscar");
 		String searchName = input.nextLine();
@@ -28,31 +29,37 @@ public class UpdatePerson {
 		
 		ResultSet resultSearch = statement.executeQuery(); // executar SQL
 		
-		// imprimir pessoas do banco de dados
-		printPerson(resultSearch);		
-		
-		
-		// 2) Substituir nome			
-		System.out.println("\nDigite o codigo da pessoa que voce ira alterar o nome");
-		String idPerson = input.nextLine();
-		System.out.println("Digite o novo nome");
-		String nameReplace = input.nextLine();
-		
-		statement.close(); // encerrar objeto string com consulta sql
+		if (resultSearch.next()) {
 			
-		statement = connection.prepareStatement(sqlReplace); // iniciar objeto string com consulta sql
-		statement.setString(1, nameReplace);
-		statement.setString(2, idPerson);
-		
-		statement.execute(); // executar SQL
-		
-		
-		// 3) Mostrar em tela todos os nomes
-		resultSearch = statement.executeQuery("SELECT * FROM people;");
-		
-		// imprimir pessoas do banco de dados
-		printPerson(resultSearch);
+			// imprimir pessoas do banco de dados
+			printPerson(resultSearch);		
+			
+			
+			// 2) Substituir nome			
+			System.out.println("\nDigite o codigo da pessoa que voce ira alterar o nome");
+			String idPerson = input.nextLine();
+			System.out.println("Digite o novo nome");
+			String nameReplace = input.nextLine();
+			
+			statement.close(); // encerrar objeto string com consulta sql
+				
+			statement = connection.prepareStatement(sqlReplace); // iniciar objeto string com consulta sql
+			statement.setString(1, nameReplace);
+			statement.setString(2, idPerson);
+			
+			statement.execute(); // executar SQL
+			
+			
+			// 3) Mostrar em tela todos os nomes
+			resultSearch = statement.executeQuery(sqlSearchAll);
+			
+			// imprimir pessoas do banco de dados
+			printPerson(resultSearch);
 
+		} else {
+			System.out.println("Pessoa nao encontrada");
+		}
+		
 		statement.close();
 		connection.close();
 		input.close();
