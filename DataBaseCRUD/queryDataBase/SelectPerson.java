@@ -13,18 +13,18 @@ import entities.Person;
 public class SelectPerson {
 	public static void main(String[] args) throws SQLException {
 		
-		Connection connection = ConnectionFactory.getConnection();
+		Connection connection = ConnectionFactory.getConnection(); // Iniciar conexão com o banco
 		
 		String sql = "SELECT * FROM people;";
 		
-		PreparedStatement statement = connection.prepareStatement(sql);
+		PreparedStatement statement = connection.prepareStatement(sql); // ! PreparedStatement protege contra SQL injection
 		
-		ResultSet result =  statement.executeQuery(); // executar SQL E armazenar resposta recebida do banco de dados
+		ResultSet result =  statement.executeQuery(); // executar SQL E armazenar resposta recebida do banco de dados no ResultSet
 		
 		
 		List<Person> people = new ArrayList<>();
 		
-		while(result.next() == true) {
+		while(result.next() == true) { // passar por cada linha da resposta obtida do banco de dados
 			int id = result.getInt("id");
 			String name = result.getString("name");
 			people.add(new Person(id, name)); // instanciar cada linha e colocar num array list
