@@ -17,7 +17,7 @@ public class Main {
 		
 		List <Products> list = new ArrayList<>(); // array
 		
-		String path = "C:\\Exercicios\\NelioAlves\\Exercicios\\exercise\\generics\\src\\in.txt";
+		String path = "src\\in.txt";
 		
 		// Try with resources on parameter
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) { // // acessar arquivo e guardar numa stream de dados
