@@ -5,8 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.Statement;
 import java.util.List;
 
 import db.DB;
@@ -32,7 +31,8 @@ public class SellerDaoJDBC implements SellerDAO{
 		try {
 			st = connection.prepareStatement(
 					"INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) "
-					+ "VALUES (?, ?, ?, ?, ?);");
+					+ "VALUES (?, ?, ?, ?, ?);", 
+					Statement.RETURN_GENERATED_KEYS); // retornar o id da linha inserida no banco de dados
 			
 			st.setString(1, seller.getName());
 			st.setString(2, seller.getEmail());
@@ -41,8 +41,16 @@ public class SellerDaoJDBC implements SellerDAO{
 			st.setInt(5, seller.getDepartment().getId());
 			
 			int rowsAffected = st.executeUpdate(); // executar sql: inserir linhas no banco
-			System.out.println("Sucesso. Linhas inseridas: " + rowsAffected);
-			
+			if (rowsAffected > 0) {
+				rs = st.getGeneratedKeys();
+				while (rs.next() == true) {
+					int id = rs.getInt(1);
+					System.out.println("Sucesso. ID da linha inserida: " + id);					
+				}
+				
+			} else {
+				System.out.println("Falha. Linha nao inserida no banco de dados.");
+			}
 		} catch (SQLException e){
 			throw new DbException(e.getMessage());
 			

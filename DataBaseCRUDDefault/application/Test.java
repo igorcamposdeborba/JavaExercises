@@ -12,26 +12,28 @@ import model.entities.Seller;
 public class Test {
 	public static void main (String [] args) {
 		
-		/* 
+		/* Instanciar objetos
 		Department department = new Department(1, "Livros");
 		 Seller seller = new Seller(21, "Igor", "igor@gmail.com", new Date(), 3000.0, department);
 		
 		 System.out.println(seller);
 		*/
-		/*
+		
+		/* Procurar por ID no banco de dados
 		 SellerDAO sellerDao = DaoFactory.createSellerDao();
 		
-		 Seller seller = sellerDao.findById(1);
+		 Seller seller = sellerDao.findById(7);
 		
 		 System.out.println(seller);
 		*/
 		
+		// Inserir objeto no banco
 		SellerDAO sellerDao = DaoFactory.createSellerDao();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			Seller sellerRegister = new Seller(null, "Bruna", "bruna@gmail.com", new Date(sdf.parse("22/04/1985").getTime()), 4300.0, new Department(3, "Books"));
+			Seller sellerRegister = new Seller(null, "Jonas", "jonas@gmail.com", new Date(sdf.parse("15/06/1995").getTime()), 3000.0, new Department(2, "Electronics"));
 			
 			sellerDao.insert(sellerRegister);
 			
