@@ -1,9 +1,12 @@
 package model.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import db.DB;
@@ -22,9 +25,31 @@ public class SellerDaoJDBC implements SellerDAO{
 	
 	
 	@Override
-	public void insert(Seller seller) {
-		// TODO Auto-generated method stub
+	public void insert(Seller seller)  {
+		PreparedStatement st = null;
+		ResultSet rs = null;
 		
+		try {
+			st = connection.prepareStatement(
+					"INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) "
+					+ "VALUES (?, ?, ?, ?, ?);");
+			
+			st.setString(1, seller.getName());
+			st.setString(2, seller.getEmail());
+			st.setDate(3, new Date(seller.getBirthDate().getTime()));
+			st.setDouble(4, seller.getBaseSalary());
+			st.setInt(5, seller.getDepartment().getId());
+			
+			int rowsAffected = st.executeUpdate(); // executar sql: inserir linhas no banco
+			System.out.println("Sucesso. Linhas inseridas: " + rowsAffected);
+			
+		} catch (SQLException e){
+			throw new DbException(e.getMessage());
+			
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 	@Override
@@ -80,7 +105,6 @@ public class SellerDaoJDBC implements SellerDAO{
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
-		
 	}
 
 	@Override

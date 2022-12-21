@@ -44,6 +44,9 @@ public class Seller implements Serializable {
 	public Double getBaseSalary() {
 		return baseSalary;
 	}
+	public Department getDepartment() {
+		return department;
+	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
