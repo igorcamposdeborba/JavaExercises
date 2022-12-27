@@ -1,13 +1,10 @@
 package application;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import model.dao.DaoFactory;
-import model.dao.SellerDAO;
-import model.entities.Department;
-import model.entities.Seller;
+import db.DB;
 
 public class Test {
 	public static void main (String [] args) {
@@ -46,9 +43,6 @@ public class Test {
 		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
-		
 		Seller sellerUpdate = new Seller(); // objeto temporario para atualizar o salario de todos os colaboradores de um setor
 		sellerUpdate.setBaseSalary(0.0); // obrigatório passar zero por ser um objeto temporário
 		sellerUpdate.incrementSalary(200);
@@ -57,15 +51,35 @@ public class Test {
 		sellerDao.update(sellerUpdate);
 		*/
 		// Deletar objeto no banco
+		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
 		
 		Integer departmentIdDelete = 4; // variavel para deletar um departament pelo id
 		
 		sellerDao.deleteById(departmentIdDelete);
+		*/
+		// Transação com rollback e commit
+		Connection cn = null; // criar conexão
+		Statement st = null;
 		
+		try {
+			cn = DB.getConnection();
+			cn.setAutoCommit(false); // false = não executar as queries antes do programa terminar (deve ter .commit())
+			
+			st = cn.createStatement();
+			
+			int row1 = st.executeUpdate("UPDATE seller SET BaseSalary = 2090 WHERE DepartmentId = 1");
+			
+			int row2 = st.executeUpdate("UPDATE seller SET BaseSalary = 3090 WHERE DepartmentId = 2");
+			
+			cn.commit(); // comitar alterações: confirma que execução terminou
+			
+			System.out.println("row1 " + row1);
+			System.out.println("row2 " + row2);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
