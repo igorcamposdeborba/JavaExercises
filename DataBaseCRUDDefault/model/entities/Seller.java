@@ -66,6 +66,14 @@ public class Seller implements Serializable {
 		this.department = department;
 	}
 	
+	// logic methods
+	public Double incrementSalary (double increment) {
+		return baseSalary = getBaseSalary() + increment;
+	}
+	public Double getSalary () {
+		return this.baseSalary;
+	}
+	
 	
 	public String toString () {
 		return "Seller [id=" + getId() 

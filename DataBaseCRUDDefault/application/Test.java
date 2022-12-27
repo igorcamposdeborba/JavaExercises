@@ -28,6 +28,7 @@ public class Test {
 		*/
 		
 		// Inserir objeto no banco
+		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -40,7 +41,21 @@ public class Test {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		*/
+		// Atualizar objeto no banco
+		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		
+		Seller sellerUpdate = new Seller(); // objeto temporario para atualizar o salario de todos os colaboradores de um setor
+		sellerUpdate.setBaseSalary(0.0);
+		sellerUpdate.incrementSalary(200);
+		sellerUpdate.setDepartment(new Department(2, "Electronics"));
+		
+		sellerDao.update(sellerUpdate);
+		
+
 		
 		
 	}

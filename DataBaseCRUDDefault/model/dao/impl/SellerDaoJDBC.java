@@ -62,7 +62,27 @@ public class SellerDaoJDBC implements SellerDAO{
 
 	@Override
 	public void update(Seller seller) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		
+		try {
+			st = connection.prepareStatement(
+					"UPDATE seller "
+					+ "SET BaseSalary = BaseSalary + ? "
+					+ "WHERE "
+					+ "(DepartmentId = ?)");
+			st.setDouble(1, seller.getSalary());
+			st.setInt(2, seller.getDepartment().getId());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			System.out.println("Sucesso. Linhas atualizadas " + rowsAffected);		
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeConnection();
+		}
 		
 	}
 
@@ -74,9 +94,9 @@ public class SellerDaoJDBC implements SellerDAO{
 
 	@Override
 	public Seller findById(Integer id) {
-		
 		PreparedStatement st = null;
 		ResultSet rs = null;
+		
 		try {
 			st = connection.prepareStatement(
 					"SELECT seller.*,department.Name as DepName\r\n"
