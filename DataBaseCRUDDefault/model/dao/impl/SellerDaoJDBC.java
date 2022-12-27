@@ -10,6 +10,7 @@ import java.util.List;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 import model.dao.SellerDAO;
 import model.entities.Department;
 import model.entities.Seller;
@@ -83,13 +84,30 @@ public class SellerDaoJDBC implements SellerDAO{
 			DB.closeStatement(st);
 			DB.closeConnection();
 		}
-		
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
 		
+		try {
+			st = connection.prepareStatement(
+					"DELETE FROM department "
+					+ "WHERE "
+					+ "(Id = ?)");
+			st.setInt(1, id);
+			
+			int rowsAffected = st.executeUpdate();
+			
+			System.out.println("Sucesso. Linhas atualizadas " + rowsAffected);		
+			
+		} catch (SQLException e) {
+			throw new DbIntegrityException(e.getMessage());
+			
+		} finally {
+			DB.closeStatement(st);
+			DB.closeConnection();
+		}
 	}
 
 	@Override

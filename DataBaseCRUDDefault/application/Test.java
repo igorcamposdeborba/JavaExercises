@@ -43,19 +43,28 @@ public class Test {
 		}
 		*/
 		// Atualizar objeto no banco
+		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		
 		Seller sellerUpdate = new Seller(); // objeto temporario para atualizar o salario de todos os colaboradores de um setor
-		sellerUpdate.setBaseSalary(0.0);
+		sellerUpdate.setBaseSalary(0.0); // obrigatório passar zero por ser um objeto temporário
 		sellerUpdate.incrementSalary(200);
 		sellerUpdate.setDepartment(new Department(2, "Electronics"));
 		
 		sellerDao.update(sellerUpdate);
+		*/
+		// Deletar objeto no banco
+		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
-
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		
+		
+		Integer departmentIdDelete = 4; // variavel para deletar um departament pelo id
+		
+		sellerDao.deleteById(departmentIdDelete);
 		
 		
 	}
