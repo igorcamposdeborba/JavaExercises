@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -117,26 +118,17 @@ public class SellerDaoJDBC implements SellerDAO{
 		
 		try {
 			st = connection.prepareStatement(
-					"SELECT seller.*,department.Name as DepName\r\n"
-					+ "FROM seller INNER JOIN department\r\n"
-					+ "ON seller.DepartmentId = department.Id\r\n"
+					"SELECT seller.*,department.Name as DepName "
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id "
 					+ "WHERE seller.Id = ?");
 			
 			st.setInt(1, id);
 			rs = st.executeQuery();
 			
 			if (rs.next() == true) {
-				Department department = new Department();
-				department.setId(rs.getInt("DepartmentId"));
-				department.setName(rs.getString("DepName"));
-				
-				Seller seller = new Seller();
-				seller.setId(rs.getInt("Id"));
-				seller.setName(rs.getString("Name"));
-				seller.setEmail(rs.getString("Email"));
-				seller.setBirthDate(rs.getDate("BirthDate"));
-				seller.setBaseSalary(rs.getDouble("BaseSalary"));
-				seller.setDepartment(department);
+				Department dp = instantiateDepartment(rs);
+				Seller seller = instantiateSeller(rs, dp);
 				
 				return seller;
 				
@@ -155,8 +147,28 @@ public class SellerDaoJDBC implements SellerDAO{
 
 	@Override
 	public List<Seller> findAll() {
-		// TODO Auto-generated method stub
+		// Implement
 		return null;
 	}
-
+	
+	
+	
+	public Department instantiateDepartment(ResultSet rs) throws SQLException {
+		Department department = new Department();
+		department.setId(rs.getInt("DepartmentId"));
+		department.setName(rs.getString("DepName"));
+		
+		return department;
+	}
+	public Seller instantiateSeller(ResultSet rs, Department department) throws SQLException {
+		Seller seller = new Seller();
+		seller.setId(rs.getInt("Id"));
+		seller.setName(rs.getString("Name"));
+		seller.setEmail(rs.getString("Email"));
+		seller.setBirthDate(rs.getDate("BirthDate"));
+		seller.setBaseSalary(rs.getDouble("BaseSalary"));
+		seller.setDepartment(department);
+		
+		return seller;
+	}
 }

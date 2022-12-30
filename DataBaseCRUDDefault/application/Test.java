@@ -1,10 +1,9 @@
 package application;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import db.DB;
+import model.dao.DaoFactory;
+import model.dao.SellerDAO;
+import model.dao.impl.SellerDaoJDBC;
+import model.entities.Seller;
 
 public class Test {
 	public static void main (String [] args) {
@@ -16,12 +15,13 @@ public class Test {
 		 System.out.println(seller);
 		*/
 		
-		/* Procurar por ID no banco de dados
-		 SellerDAO sellerDao = DaoFactory.createSellerDao();
+		// Procurar por ID no banco de dados
+		/*
+		SellerDAO sellerDao = DaoFactory.createSellerDao();
 		
-		 Seller seller = sellerDao.findById(7);
+		Seller seller = sellerDao.findById(5);
 		
-		 System.out.println(seller);
+		System.out.println(seller);
 		*/
 		
 		// Inserir objeto no banco
@@ -56,10 +56,10 @@ public class Test {
 		
 		Integer departmentIdDelete = 4; // variavel para deletar um departament pelo id
 		
-		sellerDao.deleteById(departmentIdDelete);
+		sellerDao.delete(departmentIdDelete);
 		*/
 		// Transação com rollback e commit
-		Connection cn = null; // criar conexão
+		/*Connection cn = null; // criar conexão
 		Statement st = null;
 		
 		try {
@@ -79,7 +79,12 @@ public class Test {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
+		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
+		
+		Seller seller = sellerDao.findById(2);
+		
+		System.out.println(seller);
 	}
 }
