@@ -1,8 +1,10 @@
 package application;
 
+import java.util.List;
+
 import model.dao.DaoFactory;
 import model.dao.SellerDAO;
-import model.dao.impl.SellerDaoJDBC;
+import model.entities.Department;
 import model.entities.Seller;
 
 public class Test {
@@ -81,10 +83,24 @@ public class Test {
 			e.printStackTrace();
 		}*/
 		
+		// Buscar por id do vendedor
+		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
 		Seller seller = sellerDao.findById(2);
 		
 		System.out.println(seller);
+		*/
+		
+		// Buscar por id do departamento
+		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
+		
+		
+		Department department = new Department(1, null);
+		List<Seller> sellerList = sellerDao.findByDepartment(department);
+		
+		for (Seller i : sellerList) {
+			System.out.println(i);
+		}
 	}
 }

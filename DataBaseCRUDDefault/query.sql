@@ -35,5 +35,12 @@ INSERT INTO seller (Name, Email, BirthDate, BaseSalary, DepartmentId) VALUES
 INSERT INTO department (Name) VALUES
   ('Teste');
   
+  
+  SELECT seller.*, department.Name AS DepName
+	FROM seller INNER JOIN department
+    ON seller.DepartmentId = department.Id
+    WHERE DepartmentId = 1
+    ORDER BY Name;
+  
   SELECT * FROM seller;
   SELECT * FROM department;
