@@ -1,7 +1,5 @@
 package application;
 
-import java.util.List;
-
 import model.dao.DaoFactory;
 import model.dao.SellerDAO;
 import model.entities.Department;
@@ -33,7 +31,7 @@ public class Test {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			Seller sellerRegister = new Seller(null, "Jonas", "jonas@gmail.com", new Date(sdf.parse("15/06/1995").getTime()), 3000.0, new Department(2, "Electronics"));
+			Seller sellerRegister = new Seller(null, "Luana", "Luana@hotmail.com", new Date(sdf.parse("25/04/1992").getTime()), 2300.0, new Department(3, "Fashion"));
 			
 			sellerDao.insert(sellerRegister);
 			
@@ -41,6 +39,7 @@ public class Test {
 			e.printStackTrace();
 		}
 		*/
+		
 		// Atualizar objeto no banco
 		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
@@ -52,6 +51,7 @@ public class Test {
 		
 		sellerDao.update(sellerUpdate);
 		*/
+		
 		// Deletar objeto no banco
 		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
@@ -60,6 +60,7 @@ public class Test {
 		
 		sellerDao.delete(departmentIdDelete);
 		*/
+		
 		// Transação com rollback e commit
 		/*Connection cn = null; // criar conexão
 		Statement st = null;
@@ -102,14 +103,26 @@ public class Test {
 			System.out.println(i);
 		}
 		*/
+		
 		// Buscar todos os vendedores
-		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
+		/*SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
 		List<Seller> sellerList = sellerDao.findAll();
 		
 		for (Seller i : sellerList) {
 			System.out.println(i);
-		}
+		}*/
+		
+		// Buscar por ID E atualizar nome
+		SellerDAO sellerDao = DaoFactory.createSellerDao();
+		
+		Seller seller = new Seller();
+		
+		seller = sellerDao.findById(1); // buscar por id
+		
+		seller.setName("Igor Campos de Borba"); // atualizar nome no objeto
+		
+		sellerDao.update(seller); // update no banco de dados por meio do padrão de projetos DAO
 		
 	}
 }

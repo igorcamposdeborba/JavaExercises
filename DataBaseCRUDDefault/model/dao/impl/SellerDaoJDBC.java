@@ -49,6 +49,7 @@ public class SellerDaoJDBC implements SellerDAO{
 				rs = st.getGeneratedKeys();
 				while (rs.next() == true) {
 					int id = rs.getInt(1);
+					seller.setId(id);
 					System.out.println("Sucesso. ID da linha inserida: " + id);					
 				}
 				
@@ -71,11 +72,15 @@ public class SellerDaoJDBC implements SellerDAO{
 		try {
 			st = connection.prepareStatement(
 					"UPDATE seller "
-					+ "SET BaseSalary = BaseSalary + ? "
+					+ "SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = BaseSalary + ?, DepartmentId = ? "
 					+ "WHERE "
-					+ "(DepartmentId = ?)");
-			st.setDouble(1, seller.getSalary());
-			st.setInt(2, seller.getDepartment().getId());
+					+ "(Id = ?)");
+			st.setString(1, seller.getName());
+			st.setString(2, seller.getEmail());
+			st.setDate(3, new Date(seller.getBirthDate().getTime()));
+			st.setDouble(4, seller.getSalary());
+			st.setInt(5, seller.getDepartment().getId());
+			st.setInt(6, seller.getId());
 			
 			int rowsAffected = st.executeUpdate();
 			
