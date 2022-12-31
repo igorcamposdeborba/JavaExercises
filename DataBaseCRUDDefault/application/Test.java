@@ -2,8 +2,6 @@ package application;
 
 import model.dao.DaoFactory;
 import model.dao.SellerDAO;
-import model.entities.Department;
-import model.entities.Seller;
 
 public class Test {
 	public static void main (String [] args) {
@@ -56,9 +54,9 @@ public class Test {
 		/*
 		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
-		Integer departmentIdDelete = 4; // variavel para deletar um departament pelo id
+		Integer departmentIdDelete = 20; // variavel para deletar um departament pelo id
 		
-		sellerDao.delete(departmentIdDelete);
+		sellerDao.deleteById(departmentIdDelete);
 		*/
 		
 		// Transação com rollback e commit
@@ -114,7 +112,7 @@ public class Test {
 		}*/
 		
 		// Buscar por ID E atualizar nome
-		SellerDAO sellerDao = DaoFactory.createSellerDao();
+		/*SellerDAO sellerDao = DaoFactory.createSellerDao();
 		
 		Seller seller = new Seller();
 		
@@ -123,6 +121,6 @@ public class Test {
 		seller.setName("Igor Campos de Borba"); // atualizar nome no objeto
 		
 		sellerDao.update(seller); // update no banco de dados por meio do padrão de projetos DAO
-		
+		*/
 	}
 }

@@ -107,7 +107,11 @@ public class SellerDaoJDBC implements SellerDAO{
 			
 			int rowsAffected = st.executeUpdate();
 			
-			System.out.println("Sucesso. Linhas atualizadas " + rowsAffected);		
+			if (rowsAffected == 0) {
+				throw new DbException("Nao existe o id no banco de dados");
+			} else {
+				System.out.println("Sucesso. Linhas atualizadas " + rowsAffected);		
+			}
 			
 		} catch (SQLException e) {
 			throw new DbIntegrityException(e.getMessage());
