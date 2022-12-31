@@ -93,8 +93,7 @@ public class Test {
 		*/
 		
 		// Buscar por id do departamento
-		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
-		
+		/*SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
 		
 		Department department = new Department(1, null);
 		List<Seller> sellerList = sellerDao.findByDepartment(department);
@@ -102,5 +101,15 @@ public class Test {
 		for (Seller i : sellerList) {
 			System.out.println(i);
 		}
+		*/
+		// Buscar todos os vendedores
+		SellerDAO sellerDao = DaoFactory.createSellerDao(); // criar conexão
+		
+		List<Seller> sellerList = sellerDao.findAll();
+		
+		for (Seller i : sellerList) {
+			System.out.println(i);
+		}
+		
 	}
 }
