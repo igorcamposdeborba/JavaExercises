@@ -5,7 +5,7 @@ public class Item {
 	private int quantity;
 	
 	// composition 1:1
-	private Product product;
+	private Product product = new Product();
 	
 	public Item () {}
 	

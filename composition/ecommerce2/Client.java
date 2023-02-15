@@ -1,6 +1,6 @@
 package composition.challenge;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
@@ -9,7 +9,7 @@ public class Client {
 	private String cpf;
 
 	// Composition
-	List<Purchase> purchaseList;
+	List<Purchase> purchaseList = new ArrayList<Purchase>();
 	
 	public Client(int id, String name, String cpf) {
 		this.id = id;

@@ -6,10 +6,12 @@ import java.util.List;
 public class Main {
 	public static void main(String [] args) {
 		
+		
 		// Product
+		int productId = 1;
 		String productName = "Notebook";
 		double productPrice = 6300.0;
-		Product product1 = new Product(productName, productPrice);
+		Product product1 = new Product(productId, productName, productPrice);
 		
 		System.out.println("Product: " + product1);
 		
@@ -37,6 +39,16 @@ public class Main {
 		
 		System.out.println("Client: " + client1);
 		
+		
+		Purchase purchase2 = new Purchase();
+		purchase2.setItems(productId, clientName, productPrice, itemId, itemQuantity);
+		System.out.println("Item + Product: " + purchase2);
+		
+		
+		client1.setPurchase(purchase2);
+		System.out.println("Client + Purchase: " + client1);
+		
+		System.out.println("Total price: " + client1.getTotalPrice());
 		
 	}
 }

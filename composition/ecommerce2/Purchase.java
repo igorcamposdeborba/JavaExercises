@@ -1,5 +1,6 @@
 package composition.challenge;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public class Purchase {
 	private int id;
 	
 	// Composition
-	private List<Item> itemList;
+	private List<Item> itemList = new ArrayList<Item>();
 	
 	public Purchase() {}
 	
@@ -30,8 +31,8 @@ public class Purchase {
 	public List<Item> getItems(){
 		return itemList;
 	}
-	public void setItems(Item item) {
-		itemList.add(item);
+	public void setItems(int productId, String name, double price, int itemId, int quantity) {
+		this.itemList.add(new Item(itemId, quantity, new Product(productId, name, price)));
 	}
 	
 	public void removeItemsById(int id) {
@@ -47,7 +48,7 @@ public class Purchase {
 	public double getTotalPrice() {
 		double counterTotalPrice = 0.0;
 		for (Item i: itemList) {
-			counterTotalPrice = i.getProduct().getPrice();
+			counterTotalPrice += i.getProduct().getPrice() * i.getQuantity();
 		}
 		return counterTotalPrice;
 	}
