@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import entities.Associate;
 import entities.Department;
 
-public class Principal {
+public class PrincipalOrientadoFuncional {
 	public static void main (String [] args) {
 		
 		// Variáveis
@@ -51,7 +51,5 @@ public class Principal {
 			System.out.println(department);
 			associates.forEach( associate -> System.out.print(associate + "\n"));
 		});
-		
-		
 	}
 }
