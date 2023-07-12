@@ -1,0 +1,26 @@
+package entities;
+
+public class Livro extends ItemBibliografico {
+	private String autor;
+	
+	public Livro(String titulo, int anoPublicacao, String autor) {
+		super(titulo, anoPublicacao); 
+		
+		this.autor = autor;
+	}
+	
+	// Access methods
+	public String getAutor() {
+		return autor;
+	}
+	
+	
+	public <T> boolean equals(T obj) {
+		if (obj instanceof Livro) {
+			Livro varLivro = (Livro) obj; // downcasting
+			return true;
+		}
+		return false;
+	}
+	
+}

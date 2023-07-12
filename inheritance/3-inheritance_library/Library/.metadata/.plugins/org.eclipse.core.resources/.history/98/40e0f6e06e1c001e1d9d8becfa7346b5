@@ -1,0 +1,54 @@
+package entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Biblioteca {
+	private List<ItemBibliografico> itens = new ArrayList<>(); // Agregação: porque biblioteca depende em parte dos ItemBibliografico (livros e revistas) para existir. 
+	// Lembre-se: existe Associação, Agregação e Composição e todas elas são escritas da mesma forma no java. A diferença é só a teoria (conceito)
+	// Ussei ArrayList porque eu acesso o índice no método ItemBibliografico para buscar por titulo e retornar o objeto
+	
+	public Biblioteca() { // construtor vazio porque eu posso ter uma biblioteca vazia
+	}
+
+	// Access methods
+	public List<ItemBibliografico> getItens(){
+		return this.itens;
+	}
+	
+	// Logic methods
+	public void AdicionarItem(ItemBibliografico item) { // adicionar livro ou revista
+		this.itens.add(item);
+	}
+	
+	
+	public ItemBibliografico buscarPorTitulo(String titulo){ // buscar pelo título o livro ou revista
+		ItemBibliografico varItem = null;
+		
+		for (int i=0; i < this.itens.size(); i++) {
+			if (this.itens.get(i).equals(titulo)) {
+				varItem = itens.get(i);
+				return varItem;
+			}
+		}
+		return varItem;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("[");
+		
+		for(int i=0; i<this.itens.size(); i++) {
+			 sb.append(itens.get(i).toString());
+			 
+			 if (i < this.itens.size() - 1) {
+				 sb.append(", ");
+			 }
+		}
+		sb.append("]");
+		
+		return sb.toString();
+	}
+}

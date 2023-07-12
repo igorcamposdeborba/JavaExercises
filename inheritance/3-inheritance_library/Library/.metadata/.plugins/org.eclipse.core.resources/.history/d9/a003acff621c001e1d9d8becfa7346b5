@@ -1,0 +1,16 @@
+package entities;
+
+public class Livro extends ItemBibliografico {
+	private String autor;
+	
+	public Livro(String titulo, int anoPublicacao, String autor) {
+		super(titulo, anoPublicacao); 
+		
+		this.autor = autor;
+	}
+	
+	
+	public String getAutor() {
+		return autor;
+	}
+}

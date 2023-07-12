@@ -1,0 +1,19 @@
+package entities;
+
+public class Revista extends ItemBibliografico {
+		private int edicao;
+		
+		public Revista (String titulo, int anoPublicacao, int edicao) {
+			super(titulo, anoPublicacao);
+			
+			this.edicao = edicao;
+		}
+		
+		// Access methods
+		public int getEdicao() {
+			return edicao;
+		}
+		
+		
+		
+}

@@ -1,0 +1,47 @@
+package principal;
+
+import java.util.Arrays;
+
+import entities.Biblioteca;
+import entities.Livro;
+import entities.Revista;
+
+public class Main {
+	public static void main(String [] args) {
+		
+		// Variáveis
+		String titulo1 = "Vikings Valhalla";
+		int anoPublicacao1 = 2023;
+		String autor1 = "Joanna Dale";
+		
+		String titulo2 = "Far Cry 3";
+		int anoPublicacao2 = 2020;
+		String autor2 = "Oliver Osbourne";
+		
+		int edicao1 = 2019;
+		int edicao2 = 2015;
+		
+		// Instanciar objetos: livros e revistas
+		Livro livro1 = new Livro(titulo1, anoPublicacao1, autor1);
+		Livro livro2 = new Livro(titulo1, anoPublicacao1, autor1);
+		Livro livro3 = new Livro(titulo2, anoPublicacao2, autor2);
+
+		Revista revista1 = new Revista(titulo1, anoPublicacao1, edicao1);
+		Revista revista2 = new Revista(titulo2, anoPublicacao2, edicao2);
+		
+		// Criar biblioteca
+		Biblioteca biblioteca1 = new Biblioteca();
+		
+		biblioteca1.AdicionarItem(livro1);
+		biblioteca1.AdicionarItem(livro3);
+		biblioteca1.AdicionarItem(revista1);
+		
+		System.out.println(Arrays.toString(biblioteca1.getItens()));
+		
+		// System.out.println("Livros iguais 1 e 2?  " + livro1.equalsLivro(livro2));
+		// System.out.println("Livros iguais 1 e 3?  " + livro1.equalsLivro(livro3));
+		
+		
+		
+	}
+}

@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Exercicios\ADP\Recursos da linguagem\Herança\Animal2\.metadata\.plugins\org.eclipse.jdt.core
+1204385438.index
+1167275426.index
+1865797976.index
