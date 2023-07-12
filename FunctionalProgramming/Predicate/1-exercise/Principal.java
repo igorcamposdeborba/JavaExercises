@@ -1,6 +1,7 @@
 package funcional2;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
@@ -14,8 +15,8 @@ public class Principal {
 		
 		personList.add(new Person("Natanael", 20));
 		personList.add(new Person("John", 40));
-		personList.add(new Person("Ana", 15));
 		personList.add(new Person("Lana", 30));		
+		personList.add(new Person("Ana", 15));
 		personList.add(new Person("Carla John", 60));
 		
 		
@@ -32,14 +33,15 @@ public class Principal {
 		Predicate<Person> nameLessFiveCharacters = (Person person) -> person.getName().length() < 5; // Predicate: bom para consultas na stream
 		Predicate<Person> findBySmallName = (Person name) -> name.getName().toLowerCase().contains("ANA".toLowerCase()); // declarar Tipo do index
 		Predicate<Person> findByAge = (Person age) -> { return age.getAge() > 11; }; // outra forma de retornar o corpo
-		
+		Comparator<Person> compareAge = Comparator.comparing(Person::getAge); // comparar idades para ordenar pelo sorted(compareAge)
 		
 		
 		// APLICAR na Stream
 		List<Person> personStream = personList.stream().filter(nameLessFiveCharacters)
 													   .filter(findBySmallName)
 													   .filter(findByAge)
-													   .sorted()
+													   .sorted(compareAge)
+													   //.sorted() // também posso fazer assim
 													   .collect(Collectors.toList());
 		
 		// NÃO RECOMENDADO: Todas operações juntas (não recomendado porque fere o princípio de Função de primeira classe da programação funcional 
