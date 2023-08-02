@@ -47,7 +47,7 @@ public class CheckingAccount {
 		return this.client;
 	}
 	public void setClient(Client client) throws IllegalStateException {
-		if (Objects.isNull(client)) {
+		if (Objects.isNull(client) || !this.equals(client)) {
 			throw new IllegalStateException("Nao eh possivel trocar o dono da conta porque ja existe um dono");
 		}
 		else if (Objects.nonNull(client)) {
