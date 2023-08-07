@@ -5,7 +5,7 @@ import java.util.Objects;
 public class CheckingAccount {
 	protected float balance;
 	
-	protected Client client;
+	protected Client client; // composition
 	
 	public CheckingAccount () {}
 	public CheckingAccount (Client client, float balance) {
@@ -25,12 +25,9 @@ public class CheckingAccount {
 	}
 	
 	public boolean withdraw(float amount){
-		boolean isValidWithdraw = false;
-		
-		if (balance - amount >= balance) {
-			isValidWithdraw = true;
-			this.balance = this.balance - amount;
-		}
+		boolean isValidWithdraw = true;
+		this.balance = this.balance - amount;
+
 		return isValidWithdraw;
 	}
 	

@@ -15,8 +15,7 @@ public class SpecialAccount extends CheckingAccount {
 		
 		if (amount <= withdrawLimit) {
 			isValidWithdraw = true;
-			super.balance = super.balance - amount; // sacar: deduzir o valor do saldo, permitindo números negativos até o fator limite da conta
-			// super.withdraw(amount);
+			super.balance = balance - amount; // sacar: deduzir o valor do saldo, permitindo números negativos até o fator limite da conta
 		}
 		return isValidWithdraw;
 	}

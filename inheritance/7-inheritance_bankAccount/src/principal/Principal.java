@@ -16,7 +16,6 @@ public class Principal {
 	System.out.println("Pessoa com conta: " + checkingAccount1);
 	
 	
-	
 	Client client2 = new Client("Bruno");
 	float amountWithdraw = 2000.0f;
 	SpecialAccount specialAccount1 = new SpecialAccount(client2, 8000.0F, 2000.0F);
