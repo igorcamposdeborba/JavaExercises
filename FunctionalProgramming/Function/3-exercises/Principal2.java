@@ -12,7 +12,7 @@ public class Principal2 {
 		// 2) menorDeTres: recebe três valores e retorna o menor
 		double a = 12.1;
 	    double b = 13.0;
-	    double c = 10.0;
+	    double c = 13.0;
 	
 	// Opção 1:
 	    Double compared = Stream.of(a, b, c)
@@ -22,6 +22,12 @@ public class Principal2 {
 	    
 	// Opção 2:
 	    System.out.println(compareElements(a, b, c));
+	    
+	// Opção 3:
+		Double compare = Stream.of(a, b, c)
+				.reduce(Double::min) // reference method
+				.get();
+		System.out.println(compare);
 	   
 	}
     public static double compareElements(double a, double b, double c) {
