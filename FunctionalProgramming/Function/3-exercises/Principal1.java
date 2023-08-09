@@ -1,11 +1,10 @@
 package principal;
 
 import java.util.Optional;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-public class Principal {
+public class Principal1 {
 	public static void main (String [] args) {
 		
 		// 1) menorDeDois: recebe dois valores e retorna o menor
@@ -24,7 +23,6 @@ public class Principal {
 		
 	// Opção 2:
 		Double comparedElements = Stream.of(a, b)
-											// .reduce(Double::min)
 											.reduce((x, y) -> x >= y == true ? y : x)
 											.orElse(Double.NaN);
 		System.out.println(comparedElements);
