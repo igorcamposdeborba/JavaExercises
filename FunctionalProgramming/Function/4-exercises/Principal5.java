@@ -2,7 +2,6 @@ package principal;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,8 +21,15 @@ public class Principal5 {
 		for (int i=0; i<result.size(); i++) {
 			convertedResult[i] = result.get(i).intValue(); // converter de Integer para int
 		}
+		
+	// Opção 2:
+		int[] result2 = List.of(list).stream()
+							.limit(n + 1)				
+							.mapToInt(i -> list[n])
+							.toArray();
 	
 	    System.out.println(Arrays.toString(convertedResult));
+	    System.out.println(Arrays.toString(result2));
 	    
 	}
 }
